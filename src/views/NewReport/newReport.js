@@ -106,7 +106,7 @@ export default function NewReport(props) {
 
     }
     return (
-        <div style={{ backgroundColor: "red", position: "relative" }}>
+        <div >
             {props.isadmin ?
 
                 <FormControl className={classes.FormControl}>

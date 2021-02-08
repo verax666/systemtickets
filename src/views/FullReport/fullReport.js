@@ -76,15 +76,18 @@ export default function FullReport(props) {
     // }
     const selectStatusbk = (idStatus) => {
         switch (idStatus) {
-            case 0: {
+            case 1: {
 
                 return classes.green;
             }
-            case 1: {
-                return classes.yellow;
-            }
             case 2: {
-                return classes.red;
+                return classes.gray;
+            }
+            case 3: {
+                return classes.blue;
+            }
+            case 4: {
+                return classes.yellow;
             }
             default: {
                 return classes.white;
