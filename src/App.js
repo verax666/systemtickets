@@ -37,10 +37,10 @@ function App() {
     <BrowserRouter>
       <AuthContext.Provider value={{ authTokensClients, setAuthTokensClients: setTokensClients }}>
         <AuthContextAdmin.Provider value={{ authTokensEmployes, setAuthTokensEmployes: setTokensEmployes }}>
-          <AuthContextLogin.Provider value={{ isLogin, setLogin: setLoginState }}>
+          <AuthContextLogin.Provider value={{ isLogin, setAuthLogin: setLoginState }}>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/login/helper/:id" component={LoginClient}>
+              <Route path="/log/helper/:id" component={LoginClient}>
               </Route>
               <PrivateRoute path="/helper" component={FaqView} />
               <PrivateAdmin path="/admin" component={admin} />

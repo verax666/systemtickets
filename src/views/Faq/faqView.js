@@ -20,14 +20,14 @@ function FaqView() {
             width: 'auto',
         },
         btn: {
-            marginRight: "10px"
+            marginRight: "40px"
         },
         center: {
             textAlign: "center"
         },
         btnend: {
             position: "absolute",
-            right: "0px"
+            right: "20px",
         },
     });
     const { setAuthTokensClients } = useAuth();

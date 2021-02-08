@@ -1,5 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
-import axios from "axios";
+import Axios from "axios";
+import axios from "../../Axios/Config"
 import { useEffect } from "react";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
@@ -9,7 +10,7 @@ import useStyles from './loginEmployescss'
 
 function LoginEmployed() {
     const { setAuthTokensEmployes } = useAuthAdmin();
-    const { setLogin } = useAuthLogin();
+    const { setAuthLogin } = useAuthLogin();
     const [change, setchange] = useState(true)
     const [errorUser, setErrorUser] = useState(false);
     const [errorPass, setErrorPass] = useState(false);
@@ -35,7 +36,7 @@ function LoginEmployed() {
                 break;
         }
     }
-    const CancelToken = axios.CancelToken;
+    const CancelToken = Axios.CancelToken;
     const source = CancelToken.source();
     const checklogin = async (user, pass) => {  // Revisar si existe el usuario y contraseña
         let params = {};
@@ -43,13 +44,13 @@ function LoginEmployed() {
         params["password"] = pass;
         params["page"] = 0;
         params["size"] = 5;
-        await axios.get("http://localhost:8080/api/developer/", { cancelToken: source.token, params }).then(res => {
+        await axios.get("/api/developer/", { cancelToken: source.token, params }).then(res => {
             if (res.data.dev.length) {
                 localStorage.setItem("tokenDeveloper", user);
                 localStorage.setItem("iddeveloper", res.data);
                 setchange(!change)
                 setAuthTokensEmployes(true);
-                setLogin(true)
+                setAuthLogin(true)
             } else {
                 console.log("false")
             }
@@ -70,6 +71,7 @@ function LoginEmployed() {
                     <TextField error={errorUser} id="user" required label="Usuario" />
                     <TextField error={errorPass} id="password" required label="Password" />
                     <Button className={classes.btn} onClick={() => checkFields()}>Iniciar Sesión</Button >
+
                 </form>
             </>
             : <Redirect to="/admin" />}

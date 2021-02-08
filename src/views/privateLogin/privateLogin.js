@@ -3,15 +3,14 @@ import { Redirect, Route } from 'react-router-dom';
 import { useAuthLogin } from '../privateRoute/auth/auth';
 
 function PrivateLogin({ component: Component, ...rest }) {
-    const isLogin = useAuthLogin();
+    const Login = useAuthLogin();
     return (
         <Route {...rest} render={(props) => (
-            !isLogin.isLogin ? (
+            !Login.isLogin ? (
                 <>
                     <Component {...props} />
-
                 </>) :
-                (<Redirect to="/admin" > </Redirect>
+                (<Redirect to="/admin" ></Redirect>
                 )
         )}
         />
