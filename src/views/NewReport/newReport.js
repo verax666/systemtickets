@@ -125,7 +125,6 @@ export default function NewReport(props) {
                 </FormControl> : null}
             <FormControl className={classes.FormControl}>
                 <TextField id="Title" label="Titulo" error={errTitle} required onChange={() => setErrTitle(false)} className={classes.TextField} />
-
                 <InputLabel htmlFor="age-native-simple">Seleccione el Proceso</InputLabel>
                 <Select error={errProcess} required
                     labelId="procesos-lbl"
