@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Dialog } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Typography, Dialog, Grid } from "@material-ui/core";
 import { CloseIcon } from '@material-ui/data-grid';
 import fullReportcss from '../FullReport/fullReport.css';
 import FullReport from '../FullReport/fullReport'
@@ -57,7 +57,11 @@ export default function InterfaceDialog(props) {
                     {Title()}
                 </Toolbar>
             </AppBar>
-            {selectedDialog()}
+            <Grid container>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
+                    {selectedDialog()}
+                </Grid>
+            </Grid>
         </Dialog>
     );
 
