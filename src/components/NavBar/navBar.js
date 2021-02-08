@@ -20,20 +20,19 @@ const NavBar = (props) => {
     };
 
     return (
-        <>
-            <AppBar className={classes.Bar}>
-                <Toolbar>
-                    {props.sidebar ? <> <IconButton className={classes.btn} onClick={toggleDrawer("left", true)}><MenuIcon /></IconButton>
-                        <SideBar close={toggleDrawer} isopen={state["left"]} tickets={props.tickets} cotizaciones={props.cotizaciones} /></> :
-                        null
-                    }
+        <AppBar className={classes.Bar}>
+            <Toolbar className={classes.Bar}>
+                {props.sidebar ? <> <IconButton className={classes.btn} onClick={toggleDrawer("left", true)}><MenuIcon /></IconButton>
+                    <SideBar close={toggleDrawer} isopen={state["left"]} tickets={props.tickets} cotizaciones={props.cotizaciones} /></> :
+                    null
+                }
 
-                    <Typography className={classes.Title}>{props.title}</Typography>
-                    {props.logout}
-                </Toolbar>
-            </AppBar>
+                <Typography className={classes.Title}>{props.title}</Typography>
+                {props.logout}
+            </Toolbar>
+        </AppBar>
 
-        </>);
+    );
 
 }
 
