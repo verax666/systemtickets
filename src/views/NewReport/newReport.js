@@ -14,7 +14,7 @@ export default function NewReport(props) {
     const [clients, setClients] = React.useState([]);
     const [client, setClient] = React.useState("");
     // Styles
-    const classes = new newReportcss();
+    const classes = newReportcss();
     const postTicket = new MethodsTickets();
     const getClients = new CGetClients();
     const procesos = [
@@ -106,7 +106,7 @@ export default function NewReport(props) {
 
     }
     return (
-        <form>
+        <FormControl className={classes.FormControl}>
             {props.isadmin ?
 
                 <FormControl className={classes.FormControl}>
