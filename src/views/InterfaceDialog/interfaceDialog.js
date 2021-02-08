@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Dialog } from "@material-ui/core";
 import { CloseIcon } from '@material-ui/data-grid';
-import './interFaceDialog.css';
 import fullReportcss from '../FullReport/fullReport.css';
 import FullReport from '../FullReport/fullReport'
 import NewReport from '../NewReport/newReport';
@@ -50,7 +49,7 @@ export default function InterfaceDialog(props) {
     }
 
     return (
-        <>
+        <div>
             <Dialog fullScreen open={open}>
                 <AppBar className={classes.AppBar}>
                     <Toolbar>
@@ -58,9 +57,11 @@ export default function InterfaceDialog(props) {
                         {Title()}
                     </Toolbar>
                 </AppBar>
-                {selectedDialog()}
+                <div className={classes.AppBar}>
+                    {selectedDialog()}
+                </div>
             </Dialog>
-        </>
+        </div>
     );
 
 }
