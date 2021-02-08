@@ -106,7 +106,7 @@ export default function NewReport(props) {
 
     }
     return (
-        <Grid className={classes.Body} container>
+        <Grid container>
             {props.isadmin ?
 
                 <FormControl className={classes.FormControl}>

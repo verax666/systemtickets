@@ -59,7 +59,7 @@ export default function InterfaceDialog(props) {
             </AppBar>
             <Grid container>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
-                    {selectedDialog()}
+                    <NewReport isadmin={props.isadmin} refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />
                 </Grid>
             </Grid>
         </Dialog>
