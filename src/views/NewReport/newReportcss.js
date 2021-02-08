@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const newReportcss = makeStyles({
+    Body: {
+        position: "relative",
+        width: "100%"
+    },
+
     TextField: {
         display: "flex",
         margin: "10px auto",

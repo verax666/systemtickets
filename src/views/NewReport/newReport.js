@@ -1,4 +1,4 @@
-import { TextField, Select, MenuItem, InputLabel, FormControl, Button, DialogTitle, DialogContent, DialogContentText, DialogActions, Dialog } from "@material-ui/core";
+import { TextField, Select, MenuItem, InputLabel, FormControl, Button, DialogTitle, DialogContent, DialogContentText, DialogActions, Dialog, Grid } from "@material-ui/core";
 import React, { useEffect } from 'react';
 import MethodsTickets from "../../services/Methods/methodsTickets";
 import newReportcss from './newReportcss';
@@ -106,7 +106,7 @@ export default function NewReport(props) {
 
     }
     return (
-        <FormControl className={classes.FormControl}>
+        <Grid container>
             {props.isadmin ?
 
                 <FormControl className={classes.FormControl}>
@@ -144,7 +144,7 @@ export default function NewReport(props) {
                 <Button onClick={() => checkFields()} className={classes.SendBtn}>Enviar</Button>
             </FormControl>
             {alertDialog}
-        </FormControl>
+        </Grid>
     );
 
 }

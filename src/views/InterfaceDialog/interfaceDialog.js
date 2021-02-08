@@ -49,19 +49,16 @@ export default function InterfaceDialog(props) {
     }
 
     return (
-        <div>
-            <Dialog fullScreen open={open}>
-                <AppBar className={classes.AppBar}>
-                    <Toolbar>
-                        <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
-                        {Title()}
-                    </Toolbar>
-                </AppBar>
-                <div className={classes.AppBar}>
-                    {selectedDialog()}
-                </div>
-            </Dialog>
-        </div>
+
+        <Dialog fullScreen open={open}>
+            <AppBar className={classes.AppBar}>
+                <Toolbar>
+                    <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
+                    {Title()}
+                </Toolbar>
+            </AppBar>
+            {selectedDialog()}
+        </Dialog>
     );
 
 }
