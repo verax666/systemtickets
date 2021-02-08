@@ -49,20 +49,21 @@ export default function InterfaceDialog(props) {
     }
 
     return (
-
-        <Dialog fullScreen open={open}>
-            <AppBar className={classes.AppBar}>
-                <Toolbar>
-                    <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
-                    {Title()}
-                </Toolbar>
-            </AppBar>
-            <Grid container>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
-                    <NewReport isadmin={props.isadmin} refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />
+        <div>
+            <Dialog fullScreen open={open}>
+                <AppBar className={classes.AppBar}>
+                    <Toolbar>
+                        <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
+                        {Title()}
+                    </Toolbar>
+                </AppBar>
+                <Grid container>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
+                        <NewReport isadmin={props.isadmin} refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Dialog>
+            </Dialog>
+        </div>
     );
 
 }
