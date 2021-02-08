@@ -144,7 +144,7 @@ export default function NewReport(props) {
                 <Button onClick={() => checkFields()} className={classes.SendBtn}>Enviar</Button>
             </FormControl>
             {alertDialog}
-        </form>
+        </FormControl>
     );
 
 }
