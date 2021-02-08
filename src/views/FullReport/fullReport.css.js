@@ -20,7 +20,7 @@ const fullReportcss = makeStyles({
     BtnNewReport: {
         background: "linear-gradient(to right, #6D9EEB,#6D9EEB)",
         color: "white",
-        margin: "20px 0px",
+        margin: "40px 0px",
         position: "relative"
     }
     ,
