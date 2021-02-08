@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const anchostatus = 25;
 
 const fullReportcss = makeStyles({
-    AppBar: {
+    bar: {
         position: "relative",
     },
     BtnClose: {
