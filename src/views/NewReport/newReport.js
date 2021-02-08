@@ -106,7 +106,7 @@ export default function NewReport(props) {
 
     }
     return (
-        <Grid container>
+        <div>
             {props.isadmin ?
 
                 <FormControl className={classes.FormControl}>
@@ -144,7 +144,7 @@ export default function NewReport(props) {
                 <Button onClick={() => checkFields()} className={classes.SendBtn}>Enviar</Button>
             </FormControl>
             {alertDialog}
-        </Grid>
+        </div>
     );
 
 }
