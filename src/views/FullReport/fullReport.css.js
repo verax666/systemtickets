@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+const anchostatus = 25;
+
 const fullReportcss = makeStyles({
     AppBar: {
         position: "relative",
@@ -15,6 +17,13 @@ const fullReportcss = makeStyles({
             color: 'white'
         }
     },
+    BtnNewReport: {
+        background: "linear-gradient(to right, #6D9EEB,#6D9EEB)",
+        color: "white",
+        margin: "20px 0px",
+        position: "relative"
+    }
+    ,
     AppBarTitle: {
         marginLeft: "20px",
         fontFamily: ['Montserrat', 'sans-serif'].join(","),
@@ -46,29 +55,45 @@ const fullReportcss = makeStyles({
     },
     white: {
         color: "white",
-        height: 20,
-        width: 20,
-        margin: "auto 20px",
-        border: "2px solid black",
-        borderRadius: 20
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: " auto",
+
     },
     green: {
         color: "green",
-        height: 30,
-        width: 30,
-        margin: "auto 20px"
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: "auto"
     },
     yellow: {
         color: "yellow",
-        height: 30,
-        width: 30,
-        margin: "auto 20px"
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: "auto"
+    }, gray: {
+        color: "gray",
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: "auto"
+    },
+    blue: {
+        color: "blue",
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: "auto"
     },
     red: {
         color: "red",
-        height: 30,
-        width: 30,
-        margin: "auto 20px"
+        height: anchostatus,
+        width: anchostatus,
+        display: "flex",
+        margin: "auto"
     }
 
 });

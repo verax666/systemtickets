@@ -16,9 +16,9 @@ const Faqs = () => {
     ];
 
     return (
-        <ul>
+        <div>
             {faqs.map(item => <p key={item.name} >{item.name}</p>)}
-        </ul>
+        </div>
 
     );
 }

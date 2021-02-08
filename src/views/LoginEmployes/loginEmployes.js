@@ -1,42 +1,83 @@
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/navBar";
-import { useAuthAdmin } from "../privateRoute/auth/auth";
+import { useAuthAdmin, useAuthLogin } from "../privateRoute/auth/auth";
+import useStyles from './loginEmployescss'
 
+function LoginEmployed() {
+    const { setAuthTokensEmployes } = useAuthAdmin();
+    const { setLogin } = useAuthLogin();
+    const [change, setchange] = useState(true)
+    const [errorUser, setErrorUser] = useState(false);
+    const [errorPass, setErrorPass] = useState(false);
 
-const useStyles = makeStyles(({
-    root: {
-        '& > *': {
-            marginLeft: "5%",
-            marginTop: "45px",
-            width: '90%',
-        },
-    },
-    btn: {
-        backgroundColor: "#324255",
-        color: "white",
-        "&:hover": {
-            backgroundColor: "#6D9EEB",
-            color: "white"
+    const classes = useStyles();
+
+    const checkFields = () => {  // Revisar si estan llenos los campos
+        const getuser = document.getElementById("user").value;
+        const getpassword = document.getElementById("password").value;
+        switch (true) {
+            case getuser === "" && getpassword === "":
+                setErrorPass(true);
+                setErrorUser(true);
+                break;
+            case getuser === "":
+                setErrorUser(true);
+                break;
+            case getpassword === "":
+                setErrorPass(true);
+                break;
+            default:
+                checklogin(getuser, getpassword)
+                break;
         }
     }
-}));
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+    const checklogin = async (user, pass) => {  // Revisar si existe el usuario y contraseña
+        let params = {};
+        params["user"] = user;
+        params["password"] = pass;
+        params["page"] = 0;
+        params["size"] = 5;
+        await axios.get("http://localhost:8080/api/developer/", { cancelToken: source.token, params }).then(res => {
+            if (res.data.dev.length) {
+                localStorage.setItem("tokenDeveloper", user);
+                localStorage.setItem("iddeveloper", res.data);
+                setchange(!change)
+                setAuthTokensEmployes(true);
+                setLogin(true)
+            } else {
+                console.log("false")
+            }
+        }).catch(err => { console.log(err) });
+    }
 
+    useEffect(() => { // Ejecutar de nuevo el componente en caso que cambie el estado change
+        return () => {
+            source.cancel();
+        };
+    }, [change])
 
-
-
-export function LoginEmplyed() {
-    const { setAuthTokensEmployes } = useAuthAdmin();
-    const classes = useStyles();
     return (
-        <>
-            <NavBar title="Iniciar Sesión" />
-            <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="Usuario" />
-                <TextField id="filled-basic" label="Password" variant="filled" />
-                <Button className={classes.btn} onClick={() => { setAuthTokensEmployes(true) }}>Iniciar Sesión</Button >
-            </form>
+        <>{change ?
+            <>
+                <NavBar title="Iniciar Sesión" />
+                <form className={classes.root} autoComplete="off">
+                    <TextField error={errorUser} id="user" required label="Usuario" />
+                    <TextField error={errorPass} id="password" required label="Password" />
+                    <Button className={classes.btn} onClick={() => checkFields()}>Iniciar Sesión</Button >
+                </form>
+            </>
+            : <Redirect to="/admin" />}
         </>
 
     );
 
 }
+
+export default LoginEmployed;
+

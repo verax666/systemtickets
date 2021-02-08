@@ -1,17 +1,18 @@
-import Axios from 'axios';
+import axios from '../../Axios/Config';
 import { useAuth } from '../../views/privateRoute/auth/auth';
 
-const ValidateClient = async (n, data, param) => {
+function ValidateClient(n, data, param) {
 
     const { setAuthTokensClients } = useAuth();
     let params = {};
-    params["id_client"] = param;
+    params["token"] = param;
     params["page"] = 0;
     params["size"] = data;
-    await Axios.get("https://pure-atoll-22967.herokuapp.com/api/ticket/", { headers: { 'authorization': param }, params }).then(res => {
+    axios.get("/api/client/" + param, { params }).then(res => {
         localStorage.setItem("tokenClient", param);
-        localStorage.setItem("ClientId", res.data.tickets[0].clientId);
+        localStorage.setItem("ClientId", res.data.id);
         localStorage.setItem("Title", "Helper")
+        localStorage.setItem("istokenClient", true);
         setAuthTokensClients(true);
     }).catch(err => { console.log(err) });
     return localStorage.getItem("istokenClient");

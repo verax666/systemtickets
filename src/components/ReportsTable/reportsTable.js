@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, } from '@material-ui/data-grid'
 import MethodsTickets from '../../services/Methods/methodsTickets'
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import fullReportcss from '../../views/FullReport/fullReport.css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 function ReportTable(props) {
     const classes = fullReportcss();
@@ -19,52 +20,19 @@ function ReportTable(props) {
     const [id, setId] = useState(undefined)
     const [visibleInterfaceDialog, setvisibleInterfaceDialog] = useState(false)
     const [Result, setResult] = useState(undefined);
+    const procesos = [
+        1,
+        2,
+        3,
+        4,
+    ];
+    const [ilabels, setIlabels] = useState([]);
 
-    const [ilabels, setIlabels] = useState([
-        { field: 'id', headerName: 'ID', flex: .2 },
-        { field: 'title', headerName: 'TITULO', flex: .3 },
-        { field: 'process', headerName: 'PROCESO', flex: .3 },
-        { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
-        {
-            field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
-                (<Typography>{row.value} <FiberManualRecordIcon className={selectStatusbk(row)}></FiberManualRecordIcon></Typography>)
-        },
-        {
-            field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
-                (< strong >{formato((row.value).substr(0, 10))} </strong >)
-        },
-        {
-            field: 'createdAt', headerName: 'Creado en', flex: .4, renderCell: (row) =>
-            (< Grid container >
-                <span style={{ height: "20px", marginBottom: "0" }}>
-                    {formato((row.value).substr(0, 10))}
-                </span>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    style={{ margin: "40px 0" }}
-                    onClick={() => isvisibleInterfaceDialog(row.row.id, undefined)}
-                >Ver Reporte</Button>
-            </ Grid >)
-        }]);
+    const changeStatus = (id, status) => {
+        console.log(status.target.value);
+        classMethods.updateTicket(id, status.target.value).then(() => setRefresh(!isrefresh));
 
-    useEffect(() => {
-        let active = true;
-        (async () => {
-            setLoading(true);
-            setUpdate(true);
-            await UpdateTable(page, pagesize, localStorage.getItem("tokenClient"));
-            await setLoading(false);
-            if (!active) {
-                return;
-            }
-        })();
-
-        return () => {
-            active = false;
-        };
-    }, [page, items, pagesize, isrefresh]);
+    }
 
     function formato(texto) {
         return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
@@ -81,16 +49,19 @@ function ReportTable(props) {
     }
 
     const selectStatusbk = (idStatus) => {
-        switch (idStatus.value) {
-            case 0: {
+        switch (idStatus) {
+            case 1: {
 
                 return classes.green;
             }
-            case 1: {
-                return classes.yellow;
-            }
             case 2: {
-                return classes.red;
+                return classes.gray;
+            }
+            case 3: {
+                return classes.blue;
+            }
+            case 4: {
+                return classes.yellow;
             }
             default: {
                 return classes.white;
@@ -99,14 +70,49 @@ function ReportTable(props) {
         }
 
     }
-    async function UpdateTable(n, it, id_client) {
+    const UpdateTable = async (n, it, id_client) => {
         if (isUpdate) {
             switch (props.typeuser) {
                 case "client":
                     classMethods.getTickets(n, it, id_client).then(res => {
                         setUpdate(false);
+
                         setrow(res.totalItems);
                         setItems(res.tickets);
+                        setIlabels([
+                            { field: 'id', headerName: 'ID', flex: .2 },
+                            { field: 'title', headerName: 'TITULO', flex: .3 },
+                            { field: 'process', headerName: 'PROCESO', flex: .4 },
+                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
+                            {
+                                field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
+                                    (<><Typography style={{ display: "auto", margin: "auto", }} >{row.value}</Typography> <FiberManualRecordIcon className={selectStatusbk(row)}></FiberManualRecordIcon></>)
+                            },
+                            {
+                                field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
+                                (< strong >
+                                    { formato((row.value).substr(0, 10))}
+                                </strong >)
+                            },
+                            {
+                                field: 'createdAt', headerName: 'Creado en', flex: .6, renderCell: (row) =>
+                                (< Grid container >
+                                    < Grid item style={{ display: "auto", margin: "auto", }}>
+                                        <strong >
+                                            {formato((row.value).substr(0, 10))}
+                                        </strong>
+                                    </Grid>
+                                    < Grid item style={{ display: "auto", margin: "auto", }}>
+                                        <IconButton
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"
+
+                                            onClick={() => isvisibleInterfaceDialog(row.row.id, undefined)}
+                                        ><VisibilityIcon /></IconButton>
+                                    </ Grid >
+                                </ Grid >)
+                            }])
                     });
                     break;
                 case "admin":
@@ -114,6 +120,55 @@ function ReportTable(props) {
                         setUpdate(false);
                         setrow(res.totalItems);
                         setItems(res.tickets);
+                        setIlabels([
+                            { field: 'id', headerName: 'ID', flex: .2 },
+                            { field: 'title', headerName: 'TITULO', flex: .3 },
+                            { field: 'process', headerName: 'PROCESO', flex: .3 },
+                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
+                            {
+                                field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
+                                    (<> <Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.statusId)}></FiberManualRecordIcon></>)
+                            },
+                            {
+                                field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
+                                (< strong >
+                                    { formato((row.value).substr(0, 10))}
+                                </strong >)
+                            },
+                            {
+                                field: 'createdAt', headerName: 'Creado en', flex: .4, renderCell: (row) =>
+                                (< Grid container >
+                                    < Grid item style={{ display: "auto", margin: "auto", }}>
+                                        <strong >
+                                            {formato((row.value).substr(0, 10))}
+                                        </strong>
+                                    </Grid>
+                                    <Grid item style={{ display: "flex", margin: "auto" }}>
+                                        <FormControl >
+                                            <InputLabel style={{ display: "flex", margin: "auto" }} htmlFor="age-native-simple">Status </InputLabel>
+                                            <Select
+                                                key={row.row.title + row.row.id}
+                                                labelId={row.row.title}
+                                                id={row.row.id + row.row.title}
+                                                value={row.row.statusId}
+                                                onChange={changeStatus.bind(this, row.row.id)}
+                                            >
+                                                {procesos.map((proceso, index) => (
+                                                    <MenuItem key={row.row.title + proceso.id + index} value={proceso} >{proceso}</MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                    < Grid item style={{ margin: "auto", display: "flex" }}>
+                                        <IconButton
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"
+                                            onClick={() => isvisibleInterfaceDialog(row.row.id, undefined)}
+                                        ><VisibilityIcon /></IconButton>
+                                    </ Grid >
+                                </ Grid >)
+                            }])
                     })
                     break;
                 default:
@@ -133,11 +188,26 @@ function ReportTable(props) {
     const refreshtable = () => {
         setRefresh(!isrefresh);
     }
+    useEffect(() => {
+        let active = true;
+        (async () => {
+            setLoading(true);
+            setUpdate(true);
+            await UpdateTable(page, pagesize, localStorage.getItem("tokenClient"));
+            await setLoading(false);
+            if (!active) {
+                return;
+            }
+        })();
 
+        return () => {
+            active = false;
+        };
+    }, [page, items, pagesize, isrefresh]);
 
     return (
         <div style={{ height: 1000, width: "100%" }}>
-            <Button style={{ position: "relative", top: 0 }} onClick={() => isvisibleInterfaceDialog()} >Crear Ticket</Button>
+            <Button className={classes.BtnNewReport} onClick={() => isvisibleInterfaceDialog()} >Crear Ticket</Button>
             <DataGrid disableColumnMenu showToolbar disableDensitySelector paginationMode="server"
                 page={page}
                 onPageChange={handlePageChange}
@@ -150,6 +220,7 @@ function ReportTable(props) {
             />;
             {!visibleInterfaceDialog ? <></> :
                 <InterfaceDialog
+                    isadmin={props.isadmin}
                     isopen={visibleInterfaceDialog}
                     callback={isvisibleInterfaceDialog}
                     id={id}

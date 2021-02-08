@@ -33,7 +33,7 @@ export default function InterfaceDialog(props) {
                 return (<FullReport id={props.id} />);
             }
             case props.id === undefined: {
-                return (<NewReport refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />);
+                return (<NewReport isadmin={props.isadmin} refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />);
             }
             default: {
                 return <></>
@@ -50,15 +50,17 @@ export default function InterfaceDialog(props) {
     }
 
     return (
-        <Dialog fullScreen open={open}>
-            <AppBar className={classes.AppBar}>
-                <Toolbar>
-                    <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
-                    {Title()}
-                </Toolbar>
-            </AppBar>
-            {selectedDialog()}
-        </Dialog>
+        <>
+            <Dialog fullScreen open={open}>
+                <AppBar className={classes.AppBar}>
+                    <Toolbar>
+                        <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>
+                        {Title()}
+                    </Toolbar>
+                </AppBar>
+                {selectedDialog()}
+            </Dialog>
+        </>
     );
 
 }
