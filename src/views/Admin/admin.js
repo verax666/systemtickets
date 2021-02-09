@@ -28,7 +28,7 @@ export default function Admin() {
         },
     });
     const { setAuthTokensEmployes } = useAuthAdmin();
-    const { setLogin } = useAuthLogin();
+    const { setAuthLogin } = useAuthLogin();
     const [change, setChange] = useState(false);
     const classes = useStyles();
 
@@ -38,7 +38,7 @@ export default function Admin() {
 
     const exit = () => {
         setAuthTokensEmployes(false)
-        setLogin(false);
+        setAuthLogin(false);
         localStorage.removeItem("isLogin");
         localStorage.removeItem("istokenEmployes");
         setChange(true);

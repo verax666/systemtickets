@@ -21,7 +21,6 @@ export default class MethodsTickets {
         params["size"] = data;
         await axios.get("/api/ticket/", { headers: { 'authorization': idclient }, params }).then(res => {
             this.Props = { tickets: res.data };
-            console.log(res.data)
         }).catch(err => console.log("err"));
         return this.Props.tickets;
     }
@@ -42,7 +41,7 @@ export default class MethodsTickets {
     }
 
     async updateTicket(id, status) {
-        await axios.put("/api/ticket/" + id, { statusId: status }).then(res => { this.Props = { ticket: res.data }; })
+        await axios.put("/api/ticket/" + id, { statusCatalogId: status }).then(res => { this.Props = { ticket: res.data }; })
 
     }
 

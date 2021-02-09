@@ -94,7 +94,7 @@ export default function NewReport(props) {
 
     const sendTicket = (titletxt, descriptiontxt) => {
         if (props.isadmin) {
-            postTicket.postTicket({ clientId: client, title: titletxt, process: process, description: descriptiontxt, statusId: 1 }).then((res) => {
+            postTicket.postTicket({ clientId: client, title: titletxt, process: process, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
                 resultpost(res);
             });
         } else {

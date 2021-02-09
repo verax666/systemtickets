@@ -30,13 +30,13 @@ export default function FullReport(props) {
                             <div className={classes.Body}>
                                 <Grid container spacing={0} item xl={8} lg={8} md={8} sm={12} xs={12}>
                                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
-                                        <Typography variant="h5" className={classes.Title}>Cliente: {Clients[0]}</Typography>
+                                        <Typography variant="h5" className={classes.Title}>Cliente: {res.ticket.client.name}</Typography>
                                     </Grid>
                                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
                                         <Typography variant="h5" className={classes.Title}>Titulo: {res.ticket.title}</Typography>
                                     </Grid>
                                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
-                                        <Typography variant="h5" className={classes.Status}>Status:{res.ticket.status.name}<FiberManualRecordIcon className={selectStatusbk(res.ticket.statusId)} /></Typography>
+                                        <Typography variant="h5" className={classes.Status}>Status:{res.ticket.status.name}<FiberManualRecordIcon className={selectStatusbk(res.ticket.status.id)} /></Typography>
                                     </Grid>
                                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
                                         <Typography variant="h5" className={classes.BodyTitle}>Creado: {formato((res.ticket.createdAt).substr(0, 10))}</Typography>

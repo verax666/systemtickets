@@ -29,7 +29,6 @@ function ReportTable(props) {
     const [ilabels, setIlabels] = useState([]);
 
     const changeStatus = (id, status) => {
-        console.log(status.target.value);
         classMethods.updateTicket(id, status.target.value).then(() => setRefresh(!isrefresh));
 
     }
@@ -127,7 +126,7 @@ function ReportTable(props) {
                             { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
                             {
                                 field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
-                                    (<> <Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.statusId)}></FiberManualRecordIcon></>)
+                                    (<> <Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
                             },
                             {
                                 field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
@@ -147,10 +146,10 @@ function ReportTable(props) {
                                         <FormControl >
                                             <InputLabel style={{ display: "flex", margin: "auto" }} htmlFor="age-native-simple">Status </InputLabel>
                                             <Select
-                                                key={row.row.title + row.row.id}
+                                                key={row.row.id}
                                                 labelId={row.row.title}
                                                 id={row.row.id + row.row.title}
-                                                value={row.row.statusId}
+                                                value={row.row.status.id}
                                                 onChange={changeStatus.bind(this, row.row.id)}
                                             >
                                                 {procesos.map((proceso, index) => (
