@@ -39,18 +39,24 @@ const SideBar = (props) => {
             </List>
             <Divider />
             <List>
-                <ListItem>
-                    <Link to={props.tickets} >
+                <Link to={props.tickets} >
+                    <ListItem button onClick={() => {
+                        document.title = "Administrador Tickets";
 
+                    }}>
                         Tickets
-                    </Link>
                 </ListItem>
-                <ListItem>
-                    <Link to={props.cotizaciones} >
+                </Link >
 
+                <Link to={props.cotizaciones} >
+                    <ListItem button onClick={() => {
+                        document.title = "Administrador Cotizador";
+
+                    }}>
                         Cotizaciones
-</Link>
                 </ListItem>
+                </Link>
+
             </List>
         </div>
     );

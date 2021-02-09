@@ -48,9 +48,9 @@ function LoginEmployed() {
             if (res.data.dev.length) {
                 localStorage.setItem("tokenDeveloper", user);
                 localStorage.setItem("iddeveloper", res.data);
-                setchange(!change)
                 setAuthTokensEmployes(true);
                 setAuthLogin(true)
+                setchange(false)
             } else {
                 console.log("false")
             }
@@ -63,6 +63,7 @@ function LoginEmployed() {
         };
     }, [change])
 
+
     return (
         <>{change ?
             <>
@@ -74,7 +75,7 @@ function LoginEmployed() {
 
                 </form>
             </>
-            : <Redirect to="/admin" />}
+            : <Redirect to="/admin/tickets" />}
         </>
 
     );

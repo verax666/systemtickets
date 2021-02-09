@@ -32,7 +32,9 @@ export default function Admin() {
     const [change, setChange] = useState(false);
     const classes = useStyles();
 
-
+    useEffect(() => {
+        document.title = "Administrador Inicio"
+    })
     useEffect(() => {
     }, [change]);
 
@@ -48,7 +50,6 @@ export default function Admin() {
             <>
                 <BrowserRouter>
                     <NavBar title={"Dashboard"} tickets={"/admin/tickets"} cotizaciones={"/admin/cotizaciones"} logout={<IconButton className={classes.btnend} onClick={() => exit()}><ExitToAppIcon /></IconButton>} sidebar>    </NavBar>
-
                     <Switch>
                         <Route path="/admin/tickets" >
                             <ReportTable isadmin typeuser="admin" />

@@ -76,12 +76,12 @@ function ReportTable(props) {
                         setItems(res.tickets);
                         setIlabels([
                             { field: 'id', headerName: 'ID', flex: .2 },
-                            { field: 'title', headerName: 'TITULO', flex: .3 },
-                            { field: 'process', headerName: 'PROCESO', flex: .4 },
-                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
+                            { field: 'title', headerName: 'Titulo', flex: .25 },
+                            { field: 'process', headerName: 'Proceso', flex: .25 },
+                            { field: 'description', headerName: 'Descripción', flex: .25 },
                             {
-                                field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
-                                    (<><Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
+                                field: 'status', headerName: 'Status', flex: .4, renderCell: (row) =>
+                                    (<><Typography style={{ display: "flex", margin: "0x auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
                             },
                             {
                                 field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
@@ -112,21 +112,22 @@ function ReportTable(props) {
                     });
                     break;
                 case "admin":
+
                     classMethods.getAllTickets(n, it).then(res => {
                         setUpdate(false);
                         setrow(res.totalItems);
                         setItems(res.tickets);
                         setIlabels([
                             { field: 'id', headerName: 'ID', flex: .2 },
-                            { field: 'title', headerName: 'TITULO', flex: .3 },
-                            { field: 'process', headerName: 'PROCESO', flex: .3 },
-                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
+                            { field: 'title', headerName: 'TITULO', flex: .23 },
+                            { field: 'process', headerName: 'PROCESO', flex: .23 },
+                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .2 },
                             {
-                                field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
-                                    (<> <Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
+                                field: 'status', headerName: 'STATUS', flex: .24, renderCell: (row) =>
+                                    (<> <Typography style={{ display: "flex", margin: "0 auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
                             },
                             {
-                                field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
+                                field: 'updatedAt', headerName: "Actualizado en", flex: .2, renderCell: (row) =>
                                 (< strong >
                                     { formato((row.value).substr(0, 10))}
                                 </strong >)

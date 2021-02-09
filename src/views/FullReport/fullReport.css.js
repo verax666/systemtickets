@@ -66,14 +66,14 @@ const fullReportcss = makeStyles((theme) => ({
         height: anchostatus,
         width: anchostatus,
         display: "flex",
-        margin: " auto 10px"
+        margin: "auto 0px"
     },
     yellow: {
         color: "yellow",
         height: anchostatus,
         width: anchostatus,
         display: "flex",
-        margin: "auto"
+        margin: "0px auto"
     }, gray: {
         color: "gray",
         height: anchostatus,
