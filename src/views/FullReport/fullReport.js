@@ -1,7 +1,7 @@
 import { DialogContent, Divider, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import MethodsTickets from '../../services/Methods/methodsTickets';
-import fullReportcss from './fullReport_css.js';
+import fullReportcss from './fullReport.css';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import CGetClient from '../../services/Methods/Clients/ClientService';
 

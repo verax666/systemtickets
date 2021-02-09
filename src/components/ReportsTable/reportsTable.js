@@ -3,7 +3,7 @@ import { DataGrid, } from '@material-ui/data-grid'
 import MethodsTickets from '../../services/Methods/methodsTickets'
 import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import fullReportcss from '../../views/FullReport/fullReport_css'
+import fullReportcss from '../../views/FullReport/fullReport.css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import statusCatalog from "../../services/Methods/StatusCatalog/StatusService";
