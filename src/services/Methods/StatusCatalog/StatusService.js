@@ -1,4 +1,4 @@
-import axios from '../../../Axios/Config';
+import axios from '../../../axios/Config';
 
 function statusCatalog() {
     let catalog = [];

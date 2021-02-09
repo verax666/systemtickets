@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Des_helper_css from "../Description_Helper/Des_helper_css";
-import Faqs from "./Faqs/faqs";
+import Faqs from "./Faqs/Faqs";
 
 
 function Faq() {

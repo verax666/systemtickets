@@ -1,4 +1,4 @@
-import axios from '../../Axios/Config';
+import axios from '../../axios/Config';
 
 export default class MethodsTickets {
 

@@ -1,12 +1,12 @@
 import { createContext, useContext } from 'react';
 
-export const AuthContext = createContext();
+export const AuthContextClient = createContext();
 export const AuthContextAdmin = createContext();
 export const AuthContextLogin = createContext();
 
 
-export function useAuth() {
-    return useContext(AuthContext);
+export function useAuthClient() {
+    return useContext(AuthContextClient);
 }
 
 export function useAuthAdmin() {

@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, IconButton, makeStyles } from '@material-ui/core';
-import Faq from '../../components/Faq/faq';
+import Faq from '../../components/Faq_View/Faqs_View';
 import ReportTable from '../../components/ReportsTable/reportsTable';
 import NavBar from '../../components/NavBar/navBar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useState } from 'react';
-import { useAuth } from '../privateRoute/auth/auth';
-import CotizadorClient from '../Cotizador/CotizadorClient/cotizadorclient';
 import Des_Helper from '../../components/Description_Helper/Des_Helper';
+import { useAuthClient } from '../PrivateRoutes/contexts/contextRoutes';
 
 function FaqView() {
     const useStyles = makeStyles({
@@ -30,7 +28,7 @@ function FaqView() {
             right: "20px",
         },
     });
-    const { setAuthTokensClients } = useAuth();
+    const { setAuthTokensClients } = useAuthClient();
 
     const classes = useStyles();
     const [change, setChange] = useState(false);

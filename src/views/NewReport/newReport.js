@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import MethodsTickets from "../../services/Methods/methodsTickets";
 import newReportcss from './newReportcss';
 import Alerts from './Alerts/Alerts'
-import CGetClients from "../../services/Methods/Clients/getClient";
+import CGetClients from "../../services/Methods/Clients/ClientService";
 
 export default function NewReport(props) {
 
@@ -99,7 +99,7 @@ export default function NewReport(props) {
             });
         } else {
 
-            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, process: process, description: descriptiontxt, statusId: 1 }).then((res) => {
+            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, process: process, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
                 resultpost(res);
             });
         }

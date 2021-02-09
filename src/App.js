@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import FaqView from './views/Faq/faqView';
-import PrivateRoute from './views/privateRoute/privateRoute';
-import { AuthContext, AuthContextAdmin, AuthContextLogin } from './views/privateRoute/auth/auth';
+import { AuthContextClient, AuthContextAdmin, AuthContextLogin } from './views/PrivateRoutes/contexts/contextRoutes';
 import { useState } from 'react';
+// Components
 import Home from './views/Home/home';
+import FaqView from './views/Faq/faqView';
 import LoginClient from './views/LoginClient/loginClient';
-import PrivateAdmin from './views/privateadmin/privateAdmin'
-import admin from './views/Admin/admin';
 import LoginEmployed from './views/LoginEmployes/loginEmployes';
-import PrivateLogin from './views/privateLogin/privateLogin';
+import admin from './views/Admin/admin';
+//Routes private
+import PrivateRoute from './views/PrivateRoutes/privateHelper/privateHelper';
+import PrivateAdmin from './views/PrivateRoutes/privateadmin/privateAdmin'
+import PrivateLogin from './views/PrivateRoutes/privateHelper/privateHelper';
 
 function App() {
 
@@ -35,7 +37,7 @@ function App() {
   }
   return (
     <BrowserRouter>
-      <AuthContext.Provider value={{ authTokensClients, setAuthTokensClients: setTokensClients }}>
+      <AuthContextClient.Provider value={{ authTokensClients, setAuthTokensClients: setTokensClients }}>
         <AuthContextAdmin.Provider value={{ authTokensEmployes, setAuthTokensEmployes: setTokensEmployes }}>
           <AuthContextLogin.Provider value={{ isLogin, setAuthLogin: setLoginState }}>
             <Switch>
@@ -48,7 +50,7 @@ function App() {
             </Switch>
           </AuthContextLogin.Provider>
         </AuthContextAdmin.Provider>
-      </AuthContext.Provider>
+      </AuthContextClient.Provider>
     </BrowserRouter>
   )
 }

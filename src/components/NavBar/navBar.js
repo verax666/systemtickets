@@ -1,7 +1,7 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { MenuIcon } from '@material-ui/data-grid';
 import { useState } from 'react';
-import NavBarcss from './navBarcss.js';
+import NavBarcss from './navBar_css';
 import SideBar from './sidebar/sidebar.js';
 
 const NavBar = (props) => {

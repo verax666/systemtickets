@@ -1,9 +1,9 @@
-import axios from '../../Axios/Config';
-import { useAuth } from '../../views/privateRoute/auth/auth';
+import axios from '../../axios/Config';
+import { useAuthClient } from '../../views/PrivateRoutes/contexts/contextRoutes';
 
 function ValidateClient(n, data, param) {
 
-    const { setAuthTokensClients } = useAuth();
+    const { setAuthTokensClients } = useAuthClient();
     let params = {};
     params["token"] = param;
     params["page"] = 0;

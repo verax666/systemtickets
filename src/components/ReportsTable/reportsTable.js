@@ -3,10 +3,10 @@ import { DataGrid, } from '@material-ui/data-grid'
 import MethodsTickets from '../../services/Methods/methodsTickets'
 import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import fullReportcss from '../../views/FullReport/fullReport.css'
+import fullReportcss from '../../views/FullReport/fullReport_css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import statusCatalog from "../../services/Methods/StatusCatalog/StatusCatalog";
+import statusCatalog from "../../services/Methods/StatusCatalog/StatusService";
 
 function ReportTable(props) {
     const classes = fullReportcss();
@@ -72,7 +72,6 @@ function ReportTable(props) {
                 case "client":
                     classMethods.getTickets(n, it, id_client).then(res => {
                         setUpdate(false);
-
                         setrow(res.totalItems);
                         setItems(res.tickets);
                         setIlabels([
@@ -82,7 +81,7 @@ function ReportTable(props) {
                             { field: 'description', headerName: 'DESCRIPCIÓN', flex: .3 },
                             {
                                 field: 'status', headerName: 'STATUS', flex: .3, renderCell: (row) =>
-                                    (<><Typography style={{ display: "auto", margin: "auto", }} >{row.value}</Typography> <FiberManualRecordIcon className={selectStatusbk(row)}></FiberManualRecordIcon></>)
+                                    (<><Typography style={{ display: "auto", margin: "auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
                             },
                             {
                                 field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
@@ -105,6 +104,7 @@ function ReportTable(props) {
                                             size="small"
 
                                             onClick={() => isvisibleInterfaceDialog(row.row.id, undefined)}
+
                                         ><VisibilityIcon /></IconButton>
                                     </ Grid >
                                 </ Grid >)

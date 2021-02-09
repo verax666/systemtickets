@@ -1,11 +1,11 @@
 import { Button, TextField } from "@material-ui/core";
 import Axios from "axios";
-import axios from "../../Axios/Config"
+import axios from "../../axios/Config"
 import { useEffect } from "react";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/navBar";
-import { useAuthAdmin, useAuthLogin } from "../privateRoute/auth/auth";
+import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
 import useStyles from './loginEmployescss'
 
 function LoginEmployed() {

@@ -4,7 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import ReportTable from "../../components/ReportsTable/reportsTable";
 import { useEffect } from "react";
 import CotizadorAdmin from "../Cotizador/CotizadorAdmin/cotizadorAdmin";
-import { useAuthAdmin, useAuthLogin } from "../privateRoute/auth/auth";
+import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
 import { IconButton, makeStyles } from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 

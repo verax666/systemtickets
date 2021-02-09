@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useAuthAdmin } from '../privateRoute/auth/auth';
+import { useAuthAdmin } from '../contexts/contextRoutes';
 
 function PrivateAdmin({ component: Component, ...rest }) {
     const isAuthenticatedAdmin = useAuthAdmin();

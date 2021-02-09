@@ -1,9 +1,9 @@
-import { DialogContent, DialogContentText, Divider, Grid, Typography } from '@material-ui/core';
+import { DialogContent, Divider, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import MethodsTickets from '../../services/Methods/methodsTickets';
-import fullReportcss from './fullReport.css.js';
+import fullReportcss from './fullReport_css.js';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import CGetClient from '../../services/Methods/Clients/getClient';
+import CGetClient from '../../services/Methods/Clients/ClientService';
 
 export default function FullReport(props) {
     // use States
