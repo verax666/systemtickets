@@ -1,7 +1,7 @@
 import { TextField, Select, MenuItem, InputLabel, FormControl, Button, DialogTitle, DialogContent, DialogContentText, DialogActions, Dialog, Grid } from "@material-ui/core";
 import React, { useEffect } from 'react';
 import MethodsTickets from "../../services/Methods/methodsTickets";
-import newReportcss from './newReportcss';
+import newReportcss from './newReport_css';
 import Alerts from './Alerts/Alerts'
 import CGetClients from "../../services/Methods/Clients/ClientService";
 

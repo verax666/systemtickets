@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Dialog, Grid } from "@material-ui/core";
 import { CloseIcon } from '@material-ui/data-grid';
-import fullReportcss from '../FullReport/fullReport_css';
+import fullReportcss from '../FullReport/fullReport.css';
 import FullReport from '../FullReport/fullReport'
 import NewReport from '../NewReport/newReport';
 
