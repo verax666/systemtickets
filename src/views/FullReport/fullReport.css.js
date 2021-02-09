@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const anchostatus = 25;
 
-const fullReportcss = makeStyles({
+const fullReportcss = makeStyles((theme) => ({
     bar: {
         position: "relative",
     },
@@ -96,6 +96,6 @@ const fullReportcss = makeStyles({
         margin: "auto"
     }
 
-});
+}));
 
 export default fullReportcss;
