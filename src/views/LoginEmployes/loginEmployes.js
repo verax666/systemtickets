@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/navBar";
-import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
+import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/auth/contextRoutes";
 import useStyles from './loginEmployescss'
 
 function LoginEmployed() {
