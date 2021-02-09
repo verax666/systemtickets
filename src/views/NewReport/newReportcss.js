@@ -14,7 +14,7 @@ const newReportcss = makeStyles((theme) => ({
     FormControl: {
         position: "relative",
         display: "flex",
-        margin: "30px auto",
+        margin: "40px auto",
         width: "90%"
     },
     DialogWarning: {

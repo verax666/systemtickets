@@ -6,6 +6,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import fullReportcss from '../../views/FullReport/fullReport.css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import statusCatalog from "../../services/Methods/StatusCatalog/StatusCatalog";
 
 function ReportTable(props) {
     const classes = fullReportcss();
@@ -20,12 +21,8 @@ function ReportTable(props) {
     const [id, setId] = useState(undefined)
     const [visibleInterfaceDialog, setvisibleInterfaceDialog] = useState(false)
     const [Result, setResult] = useState(undefined);
-    const procesos = [
-        1,
-        2,
-        3,
-        4,
-    ];
+    const procesos = statusCatalog();
+
     const [ilabels, setIlabels] = useState([]);
 
     const changeStatus = (id, status) => {
