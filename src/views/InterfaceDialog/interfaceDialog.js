@@ -50,7 +50,7 @@ export default function InterfaceDialog(props) {
 
     return (
         <div>
-            <Dialog fullScreen open={open}>
+            <Dialog scroll="paper" fullScreen open={open}>
                 <AppBar position="relative"  >
                     <Toolbar>
                         <IconButton edge="start" onClick={() => handleClickClose()} className={classes.BtnClose} ><CloseIcon /> </IconButton>

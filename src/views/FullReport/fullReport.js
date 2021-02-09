@@ -1,4 +1,4 @@
-import { DialogContentText, Grid, Typography } from '@material-ui/core';
+import { DialogContent, DialogContentText, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import MethodsTickets from '../../services/Methods/methodsTickets';
 import fullReportcss from './fullReport.css.js';
@@ -52,7 +52,10 @@ export default function FullReport(props) {
                                             Descripción: </Typography>
                                     </Grid>
                                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                                        <DialogContentText className={classes.Description} > {res.ticket.description}</DialogContentText>
+                                        <DialogContent dividers={true} className={classes.Description} >
+                                            <Typography variant="body1" paragraph>
+                                                {res.ticket.description}
+                                            </Typography></DialogContent>
                                     </Grid>
                                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                                         <Typography variant="h5" className={classes.BodyTitle}>
