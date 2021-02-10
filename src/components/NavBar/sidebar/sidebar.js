@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 
 const SideBar = (props) => {
     const useStyles = makeStyles({
+        paper: {
+            background: "linear-gradient(to right, #6D9EEB,#6D9EEB)",
+        },
         list: {
-            width: 250,
+            width: 450,
+            height: "100%"
         },
         fullList: {
             width: 'auto',
@@ -17,12 +21,28 @@ const SideBar = (props) => {
             marginRight: "10px"
         },
         center: {
-            textAlign: "center"
+            textAlign: "center",
+            color: "white"
         },
         btnend: {
             position: "absolute",
             right: "0px"
         },
+        Listitem: {
+
+            height: "50px",
+            "&:hover": {
+                background: "white"
+            }
+        },
+        link: {
+            listStyle: "none",
+            textDecoration: "none",
+            color: "white",
+            "&:hover": {
+                color: "black",
+            }
+        }
     });
     const classes = useStyles();
 
@@ -35,12 +55,12 @@ const SideBar = (props) => {
             onKeyDown={props.close(anchor, false)}
         >
             <List>
-                <Typography variant="h6" className={classes.center}>Administrador</Typography>
+                <Typography variant="h6" className={classes.center}>Usuario: {(localStorage.getItem("iddeveloper"))}</Typography>
             </List>
             <Divider />
             <List>
-                <Link to={props.tickets} >
-                    <ListItem button onClick={() => {
+                <Link to={props.tickets} className={classes.link}>
+                    <ListItem className={classes.Listitem} button onClick={() => {
                         document.title = "Administrador Tickets";
 
                     }}>
@@ -48,8 +68,8 @@ const SideBar = (props) => {
                 </ListItem>
                 </Link >
 
-                <Link to={props.cotizaciones} >
-                    <ListItem button onClick={() => {
+                <Link to={props.cotizaciones} className={classes.link} >
+                    <ListItem className={classes.Listitem} button onClick={() => {
                         document.title = "Administrador Cotizador";
 
                     }}>
@@ -63,7 +83,7 @@ const SideBar = (props) => {
 
     return (
         <>
-            <Drawer anchor={"left"} open={props.isopen} onClose={props.close("left", false)}>
+            <Drawer classes={{ paper: classes.paper }} anchor={"left"} open={props.isopen} onClose={props.close("left", false)}>
                 {list("left")}
             </Drawer>
         </>

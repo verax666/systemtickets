@@ -17,24 +17,26 @@ function LoginEmployed() {
 
     const classes = useStyles();
 
-    const checkFields = () => {  // Revisar si estan llenos los campos
-        const getuser = document.getElementById("user").value;
-        const getpassword = document.getElementById("password").value;
-        switch (true) {
-            case getuser === "" && getpassword === "":
-                setErrorPass(true);
-                setErrorUser(true);
-                break;
-            case getuser === "":
-                setErrorUser(true);
-                break;
-            case getpassword === "":
-                setErrorPass(true);
-                break;
-            default:
-                checklogin(getuser, getpassword)
-                break;
-        }
+    const checkFields = (e) => {  // Revisar si estan llenos los campos
+        if (e.keyCode == 13) {
+            const getuser = document.getElementById("user").value;
+            const getpassword = document.getElementById("password").value;
+            switch (true) {
+                case getuser === "" && getpassword === "":
+                    setErrorPass(true);
+                    setErrorUser(true);
+                    break;
+                case getuser === "":
+                    setErrorUser(true);
+                    break;
+                case getpassword === "":
+                    setErrorPass(true);
+                    break;
+                default:
+                    checklogin(getuser, getpassword)
+                    break;
+            }
+        };
     }
     const CancelToken = Axios.CancelToken;
     const source = CancelToken.source();
@@ -47,7 +49,7 @@ function LoginEmployed() {
         await axios.get("/api/developer/", { cancelToken: source.token, params }).then(res => {
             if (res.data.dev.length) {
                 localStorage.setItem("tokenDeveloper", user);
-                localStorage.setItem("iddeveloper", res.data);
+                localStorage.setItem("iddeveloper", res.data.dev[0].name);
                 setAuthTokensEmployes(true);
                 setAuthLogin(true)
                 setchange(false)
@@ -70,7 +72,7 @@ function LoginEmployed() {
                 <NavBar title="Iniciar Sesión" />
                 <form className={classes.root} autoComplete="off">
                     <TextField error={errorUser} id="user" required label="Usuario" />
-                    <TextField error={errorPass} id="password" required label="Password" />
+                    <TextField error={errorPass} id="password" onKeyDown={(e) => checkFields(e)} required label="Password" />
                     <Button className={classes.btn} onClick={() => checkFields()}>Iniciar Sesión</Button >
 
                 </form>

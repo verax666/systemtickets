@@ -20,8 +20,11 @@ const fullReportcss = makeStyles((theme) => ({
     BtnNewReport: {
         background: "linear-gradient(to right, #6D9EEB,#6D9EEB)",
         color: "white",
-        margin: "40px 0px",
-        position: "relative"
+        margin: "20px 20px",
+        position: "relative",
+        "&:hover": {
+            background: "linear-gradient(to right, #6D5BBB,#6D5BBB)"
+        }
     }
     ,
     AppBarTitle: {

@@ -5,7 +5,7 @@ import ReportTable from "../../components/ReportsTable/reportsTable";
 import { useEffect } from "react";
 import CotizadorAdmin from "../Cotizador/CotizadorAdmin/cotizadorAdmin";
 import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
-import { IconButton, makeStyles } from "@material-ui/core";
+import { Button, IconButton, makeStyles } from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 export default function Admin() {
@@ -22,10 +22,17 @@ export default function Admin() {
         center: {
             textAlign: "center"
         },
-        btnend: {
+        closeSesion: {
             position: "absolute",
-            right: "20px",
-        },
+            right: "30px",
+            top: "15px",
+            backgroundColor: "#6D8EEE",
+            color: "white",
+            "&:hover": {
+                backgroundColor: "white",
+                color: "#6D8EEE"
+            }
+        }
     });
     const { setAuthTokensEmployes } = useAuthAdmin();
     const { setAuthLogin } = useAuthLogin();
@@ -49,7 +56,7 @@ export default function Admin() {
         <> {!change ?
             <>
                 <BrowserRouter>
-                    <NavBar title={"Dashboard"} tickets={"/admin/tickets"} cotizaciones={"/admin/cotizaciones"} logout={<IconButton className={classes.btnend} onClick={() => exit()}><ExitToAppIcon /></IconButton>} sidebar>    </NavBar>
+                    <NavBar title={"Dashboard"} tickets={"/admin/tickets"} cotizaciones={"/admin/cotizaciones"} logout={<Button onClick={() => exit()} className={classes.closeSesion}>Cerrar Sesión</Button>} sidebar>    </NavBar>
                     <Switch>
                         <Route path="/admin/tickets" >
                             <ReportTable isadmin typeuser="admin" />
