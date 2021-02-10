@@ -10,7 +10,7 @@ function PrivateLogin({ component: Component, ...rest }) {
                 <>
                     <Component {...props} />
                 </>) :
-                (<Redirect to="/admin" ></Redirect>
+                (<Redirect to="/admin/tickets" ></Redirect>
                 )
         )}
         />
