@@ -11,7 +11,7 @@ import admin from './views/Admin/admin';
 //Routes private
 import PrivateRoute from './views/PrivateRoutes/privateHelper/privateHelper';
 import PrivateAdmin from './views/PrivateRoutes/privateadmin/privateAdmin'
-import PrivateLogin from './views/PrivateRoutes/privateHelper/privateHelper';
+import PrivateLogin from './views/PrivateRoutes/privateLogin/privateLogin';
 
 function App() {
 

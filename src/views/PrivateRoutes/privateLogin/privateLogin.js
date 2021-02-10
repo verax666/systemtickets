@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useAuthLogin } from '../privateRoute/auth/auth';
+import { useAuthLogin } from '../contexts/contextRoutes';
 
 function PrivateLogin({ component: Component, ...rest }) {
     const Login = useAuthLogin();
