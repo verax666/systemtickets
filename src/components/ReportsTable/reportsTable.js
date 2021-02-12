@@ -117,32 +117,33 @@ function ReportTable(props) {
                         setUpdate(false);
                         setrow(res.totalItems);
                         setItems(res.tickets);
+                        let cont = document.getElementById("Container").offsetWidth
                         setIlabels([
-                            { field: 'id', headerName: 'ID', flex: .2 },
+                            { field: 'id', headerName: 'ID', flex: .13 },
                             { field: 'title', headerName: 'TITULO', flex: .23 },
                             { field: 'process', headerName: 'PROCESO', flex: .23 },
-                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .2 },
+                            { field: 'description', headerName: 'DESCRIPCIÓN', flex: .23 },
                             {
-                                field: 'status', headerName: 'STATUS', flex: .24, renderCell: (row) =>
+                                field: 'status', headerName: 'STATUS', flex: .23, renderCell: (row) =>
                                     (<> <Typography style={{ display: "flex", margin: "0 auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
                             },
                             {
-                                field: 'updatedAt', headerName: "Actualizado en", flex: .2, renderCell: (row) =>
+                                field: 'updatedAt', headerName: "Actualizado en", flex: .22, renderCell: (row) =>
                                 (< strong >
                                     { formato((row.value).substr(0, 10))}
                                 </strong >)
                             },
                             {
-                                field: 'createdAt', headerName: 'Creado en', flex: .4, renderCell: (row) =>
-                                (< Grid container >
-                                    < Grid item style={{ display: "auto", margin: "auto", }}>
+                                field: 'createdAt', headerName: 'Creado en', flex: .3, renderCell: (row) =>
+                                (< Grid container style={{ position: "relative" }} >
+                                    < Grid item style={{ top: "-25px", position: "absolute" }}>
                                         <strong >
                                             {formato((row.value).substr(0, 10))}
                                         </strong>
                                     </Grid>
-                                    <Grid item style={{ display: "flex", margin: "auto" }}>
+                                    <Grid item style={{ top: "30px", position: "absolute" }}>
                                         <FormControl >
-                                            <InputLabel style={{ display: "flex", margin: "auto" }} htmlFor="age-native-simple">Status </InputLabel>
+                                            <InputLabel htmlFor="age-native-simple">Status </InputLabel>
                                             <Select
                                                 key={row.row.id}
                                                 labelId={row.row.title}
@@ -151,12 +152,12 @@ function ReportTable(props) {
                                                 onChange={changeStatus.bind(this, row.row.id)}
                                             >
                                                 {procesos.map((proceso, index) => (
-                                                    <MenuItem key={row.row.title + proceso.id + index} value={proceso} >{proceso}</MenuItem>
+                                                    <MenuItem key={row.row.title + proceso.id + index} value={proceso.id} >{proceso.id + " " + proceso.name}</MenuItem>
                                                 ))}
                                             </Select>
                                         </FormControl>
                                     </Grid>
-                                    < Grid item style={{ margin: "auto", display: "flex" }}>
+                                    < Grid item style={{ position: "relative", left: "120px" }}>
                                         <IconButton
                                             variant="contained"
                                             color="primary"
@@ -202,10 +203,23 @@ function ReportTable(props) {
         };
     }, [page, items, pagesize, isrefresh]);
 
+    const ChangeSizeColumn = (e) => {
+        let es = [e]
+        es.map((item, index) => {
+            if (item[index]) {
+                console.log()
+            }
+        })
+
+    }
+
     return (
-        <div style={{ height: 1000, width: "100%" }}>
+        <div id="Container" style={{ height: 1000, width: "100%" }}>
             <Button className={classes.BtnNewReport} onClick={() => isvisibleInterfaceDialog()} >Crear Ticket</Button>
-            <DataGrid disableColumnMenu showToolbar disableDensitySelector paginationMode="server"
+            <DataGrid onStateChange={(e) => {
+                ChangeSizeColumn(e.state.columns.lookup);
+
+            }} disableColumnMenu showToolbar disableDensitySelector paginationMode="server"
                 page={page}
                 onPageChange={handlePageChange}
                 loading={loading}

@@ -11,7 +11,7 @@ const SideBar = (props) => {
             background: "linear-gradient(to right, #6D9EEB,#6D9EEB)",
         },
         list: {
-            width: 450,
+            width: 350,
             height: "100%"
         },
         fullList: {

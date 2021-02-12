@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/navBar";
 import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
 import useStyles from './loginEmployescss'
+import { Alert } from "@material-ui/lab";
 
 function LoginEmployed() {
     const { setAuthTokensEmployes } = useAuthAdmin();
@@ -14,29 +15,28 @@ function LoginEmployed() {
     const [change, setchange] = useState(true)
     const [errorUser, setErrorUser] = useState(false);
     const [errorPass, setErrorPass] = useState(false);
-
+    const [invaliduser, setInvalidUser] = useState(null);
     const classes = useStyles();
 
     const checkFields = (e) => {  // Revisar si estan llenos los campos
-        if (e.keyCode == 13) {
-            const getuser = document.getElementById("user").value;
-            const getpassword = document.getElementById("password").value;
-            switch (true) {
-                case getuser === "" && getpassword === "":
-                    setErrorPass(true);
-                    setErrorUser(true);
-                    break;
-                case getuser === "":
-                    setErrorUser(true);
-                    break;
-                case getpassword === "":
-                    setErrorPass(true);
-                    break;
-                default:
-                    checklogin(getuser, getpassword)
-                    break;
-            }
-        };
+        const getuser = document.getElementById("user").value;
+        const getpassword = document.getElementById("password").value;
+        switch (true) {
+            case getuser === "" && getpassword === "":
+                setErrorPass(true);
+                setErrorUser(true);
+                break;
+            case getuser === "":
+                setErrorUser(true);
+                break;
+            case getpassword === "":
+                setErrorPass(true);
+                break;
+            default:
+                checklogin(getuser, getpassword)
+                break;
+        }
+
     }
     const CancelToken = Axios.CancelToken;
     const source = CancelToken.source();
@@ -54,7 +54,7 @@ function LoginEmployed() {
                 setAuthLogin(true)
                 setchange(false)
             } else {
-                console.log("false")
+                setInvalidUser(<Alert severity="error">Error Usuario o contraseña incorrecto</Alert>)
             }
         }).catch(err => { console.log(err) });
     }
@@ -71,8 +71,10 @@ function LoginEmployed() {
             <>
                 <NavBar title="Iniciar Sesión" />
                 <form className={classes.root} autoComplete="off">
+
                     <TextField error={errorUser} id="user" required label="Usuario" />
-                    <TextField error={errorPass} id="password" onKeyDown={(e) => checkFields(e)} required label="Password" />
+                    <TextField error={errorPass} id="password" onKeyDown={(e) => e.keyCode === 13 ? checkFields(e) : null} required label="Password" />
+                    {invaliduser}
                     <Button className={classes.btn} onClick={() => checkFields()}>Iniciar Sesión</Button >
 
                 </form>

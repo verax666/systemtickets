@@ -44,7 +44,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/log/helper/:id" component={LoginClient}>
               </Route>
-              <PrivateRoute path="/helper" component={FaqView} />
+              <PrivateRoute exact path="/helper" component={FaqView} />
               <PrivateAdmin path="/admin" component={admin} />
               <PrivateLogin path="/login" component={LoginEmployed} />
             </Switch>

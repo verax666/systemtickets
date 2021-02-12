@@ -22,6 +22,7 @@ const fullReportcss = makeStyles((theme) => ({
         color: "white",
         margin: "20px 20px",
         position: "relative",
+        width: "200px",
         "&:hover": {
             background: "linear-gradient(to right, #6D5BBB,#6D5BBB)"
         }

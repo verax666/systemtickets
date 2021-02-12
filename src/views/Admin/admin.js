@@ -58,10 +58,10 @@ export default function Admin() {
                 <BrowserRouter>
                     <NavBar title={"Dashboard"} tickets={"/admin/tickets"} cotizaciones={"/admin/cotizaciones"} logout={<Button onClick={() => exit()} className={classes.closeSesion}>Cerrar Sesión</Button>} sidebar>    </NavBar>
                     <Switch>
-                        <Route path="/admin/tickets" >
+                        <Route exact path="/admin/tickets" >
                             <ReportTable isadmin typeuser="admin" />
                         </Route>
-                        <Route path="/admin/cotizaciones">
+                        <Route exact path="/admin/cotizaciones">
                             <CotizadorAdmin />
                         </Route>
                     </Switch>

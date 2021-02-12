@@ -52,7 +52,8 @@ const NavBar = makeStyles((theme) => ({
         marginLeft: 0,
     },
     btn: {
-        marginRight: "40px"
+        marginRight: "40px",
+        color: "white"
     },
 
 }));
