@@ -134,17 +134,17 @@ function ReportTable(props) {
                                 </strong >)
                             },
                             {
-                                field: 'createdAt', headerName: 'Creado en', flex: .3, renderCell: (row) =>
+                                field: 'createdAt', headerName: 'Creado en', flex: .27, renderCell: (row) =>
                                 (< Grid container style={{ position: "relative" }} >
-                                    < Grid item style={{ top: "-25px", position: "absolute" }}>
+                                    < Grid item style={{ top: "23px", position: "relative" }}>
                                         <strong >
                                             {formato((row.value).substr(0, 10))}
                                         </strong>
                                     </Grid>
-                                    <Grid item style={{ top: "30px", position: "absolute" }}>
+                                    <Grid item style={{ top: "3px", position: "absolute" }}>
                                         <FormControl >
-                                            <InputLabel htmlFor="age-native-simple">Status </InputLabel>
-                                            <Select
+                                            <InputLabel style={{ fontSize: "14px" }} htmlFor="age-native-simple">Status </InputLabel>
+                                            <Select style={{ fontSize: "14px", width: "70px" }}
                                                 key={row.row.id}
                                                 labelId={row.row.title}
                                                 id={row.row.id + row.row.title}
@@ -152,12 +152,12 @@ function ReportTable(props) {
                                                 onChange={changeStatus.bind(this, row.row.id)}
                                             >
                                                 {procesos.map((proceso, index) => (
-                                                    <MenuItem key={row.row.title + proceso.id + index} value={proceso.id} >{proceso.id + " " + proceso.name}</MenuItem>
+                                                    <MenuItem style={{ fontSize: "15px" }} key={row.row.title + proceso.id + index} value={proceso.id} >{proceso.id + " " + proceso.name}</MenuItem>
                                                 ))}
                                             </Select>
                                         </FormControl>
                                     </Grid>
-                                    < Grid item style={{ position: "relative", left: "120px" }}>
+                                    < Grid item style={{ position: "absolute", right: "0%" }}>
                                         <IconButton
                                             variant="contained"
                                             color="primary"
