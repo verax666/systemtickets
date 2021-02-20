@@ -19,7 +19,7 @@ function ReportTable(props) {
     const [page, setPage] = useState(1);
     const [countsrow, setrow] = useState(0);
     const [id, setId] = useState(undefined)
-    const [visibleInterfaceDialog, setvisibleInterfaceDialog] = useState(false)
+    const [visibleInterfaceDialog, setvisibleInterfaceDialog] = useState(true)
     const [Result, setResult] = useState(undefined);
     const procesos = statusCatalog();
 
@@ -74,6 +74,7 @@ function ReportTable(props) {
                         setUpdate(false);
                         setrow(res.totalItems);
                         setItems(res.tickets);
+                        console.log(res.tickets)
                         setIlabels([
                             { field: 'id', headerName: 'ID', flex: .2 },
                             { field: 'title', headerName: 'Titulo', flex: .25 },
@@ -184,7 +185,9 @@ function ReportTable(props) {
         setvisibleInterfaceDialog(!visibleInterfaceDialog)
     }
     const refreshtable = () => {
+        setvisibleInterfaceDialog(false)
         setRefresh(!isrefresh);
+
     }
     useEffect(() => {
         let active = true;

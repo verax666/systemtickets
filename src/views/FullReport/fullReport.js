@@ -30,7 +30,7 @@ export default function FullReport(props) {
                             <div className={classes.Body}>
                                 <DialogContent dividers={true} className={classes.Description} >
                                     <Grid container spacing={0} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={8} lg={8} md={8} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.Title}>Cliente: {res.ticket.client.name}</Typography>
                                         </Grid>
                                         <Divider />
@@ -52,6 +52,10 @@ export default function FullReport(props) {
                                         <Divider />
                                         <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.BodyTitle}>Proceso: {res.ticket.process}</Typography>
+                                        </Grid>
+                                        <Divider />
+                                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
+                                            <Typography variant="h5" className={classes.BodyTitle}>SubProceso: {res.ticket.subprocess}</Typography>
                                         </Grid>
                                         <Divider />
                                         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

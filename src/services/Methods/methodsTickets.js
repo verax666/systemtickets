@@ -24,6 +24,7 @@ export default class MethodsTickets {
         }).catch(err => console.log("err"));
         return this.Props.tickets;
     }
+
     async getAllTickets(n, data) {
         let params = {};
         params["page"] = n - 1;
@@ -34,7 +35,6 @@ export default class MethodsTickets {
         return this.Props.tickets;
     }
 
-
     async getTikcet(i) {
         await axios.get("/api/ticket/" + i).then(res => { this.Props = { ticket: res.data }; })
         return this.Props;
@@ -44,8 +44,6 @@ export default class MethodsTickets {
         await axios.put("/api/ticket/" + id, { statusCatalogId: status }).then(res => { this.Props = { ticket: res.data }; })
 
     }
-
-
 
 }
 
