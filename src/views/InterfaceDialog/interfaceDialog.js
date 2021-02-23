@@ -29,7 +29,7 @@ export default function InterfaceDialog(props) {
 
         switch (true) {
             case props.id !== undefined: {
-                return (<FullReport id={props.id} />);
+                return (<FullReport id={props.id} isadmin={props.isadmin} />);
             }
             case props.id === undefined: {
                 return (<NewReport isadmin={props.isadmin} refresh={props.refresh} handleCancel={() => handleCancel} callback={dialog} alertopen={alert} />);

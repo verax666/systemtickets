@@ -27,14 +27,12 @@ export default function NewReport(props) {
 
     useEffect(() => {
         gclients();
+
         if (props.isadmin) {
 
         } else {
-
             processclient.getAllProcess().then(res => {
                 setRowProcess(res.rows);
-
-                console.log(RowProcess)
                 setLoading(false);
             });
         }
@@ -42,7 +40,7 @@ export default function NewReport(props) {
 
 
     const gclients = () => {
-        Promise.resolve(getClients.getClients().then(res => { setClients(res) }))
+        Promise.resolve(getClients.getClients().then(res => { setClients(res); }))
     }
     const handleChangeProcess = (event) => {
         setProcess(event.target.value);
@@ -54,6 +52,10 @@ export default function NewReport(props) {
     };
     const handleChangeClient = (event) => {
         setClient(event.target.value);
+        processclient.getAllProcess(event.target.value).then(res => {
+            setRowProcess(res.rows);
+            setLoading(false);
+        });
         setErrProcess(false);
     };
 
@@ -143,7 +145,8 @@ export default function NewReport(props) {
                         variant="outlined"
                     >
                         {clients.map((proceso) => (
-                            <MenuItem key={proceso.id} value={proceso.id} >{proceso.name}</MenuItem>
+                            <MenuItem key={proceso.id} value={proceso.token} name={proceso.id} >{proceso.name}</MenuItem>
+
                         ))}
                     </Select>
                 </FormControl> : null}

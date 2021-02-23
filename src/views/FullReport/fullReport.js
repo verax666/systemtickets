@@ -1,4 +1,4 @@
-import { DialogContent, Divider, Grid, Typography } from '@material-ui/core';
+import { Avatar, DialogContent, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import React from 'react';
 import MethodsTickets from '../../services/Methods/methodsTickets';
 import fullReportcss from './fullReport.css';
@@ -29,28 +29,29 @@ export default function FullReport(props) {
                         <>
                             <div className={classes.Body}>
                                 <DialogContent dividers={true} className={classes.Description} >
-                                    <Grid container spacing={0} item xl={8} lg={8} md={8} sm={12} xs={12}>
-                                        <Grid item xl={8} lg={8} md={8} sm={12} xs={12} >
+                                    <Grid container item spacing={0} xl={12} lg={12} md={12} sm={12} xs={12}>
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.Title}>Cliente: {res.ticket.client.name}</Typography>
                                         </Grid>
+
                                         <Divider />
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.Title}>Titulo: {res.ticket.title}</Typography>
                                         </Grid>
                                         <Divider />
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.Status}>Status: {res.ticket.status.name}<FiberManualRecordIcon className={selectStatusbk(res.ticket.status.id)} /></Typography>
                                         </Grid>
                                         <Divider />
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.BodyTitle}>Creado: {formato((res.ticket.createdAt).substr(0, 10))}</Typography>
                                         </Grid>
                                         <Divider />
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.BodyTitle}>Ultima Actualización : {formato((res.ticket.updatedAt).substr(0, 10))}</Typography>
                                         </Grid>
                                         <Divider />
-                                        <Grid item xl={6} lg={6} md={6} sm={12} xs={12} >
+                                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12} >
                                             <Typography variant="h5" className={classes.BodyTitle}>Proceso: {res.ticket.process}</Typography>
                                         </Grid>
                                         <Divider />
@@ -74,9 +75,35 @@ export default function FullReport(props) {
                                                 Archivo de Prueba: </Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
-
-                                    </Grid>
+                                    {props.isadmin ?
+                                        <Grid item xl={8} lg={8} md={8} sm={12} xs={12} >
+                                            <Typography variant="h5" className={classes.BodyTitle}>
+                                                Historial de Comentarios: </Typography>
+                                            <List className={classes.root}>
+                                                <ListItem alignItems="flex-start">
+                                                    <ListItemAvatar>
+                                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                                    </ListItemAvatar>
+                                                    <ListItemText
+                                                        primary="Brunch this weekend?"
+                                                        secondary={
+                                                            <React.Fragment>
+                                                                <Typography
+                                                                    component="span"
+                                                                    variant="body2"
+                                                                    className={classes.inline}
+                                                                    color="textPrimary"
+                                                                >
+                                                                    {localStorage.getItem("iddeveloper")}
+                                                                </Typography>
+                                                                {" — I'll be in your neighborhood doing errands this…"}
+                                                            </React.Fragment>
+                                                        }
+                                                    />
+                                                </ListItem>
+                                                <Divider variant="inset" component="li" />
+                                            </List>
+                                        </Grid> : null}
                                 </DialogContent>
                             </div>
                         </>);

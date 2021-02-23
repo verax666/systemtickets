@@ -24,10 +24,11 @@ export default class MethodsProcess {
     //     }).catch(err => console.log("err"));
     //     return this.Props.tickets;
     // }
-    async getAllProcess() {
+    async getAllProcess(token) {
         let params = {}
         params["id_client"] = localStorage.getItem("tokenClient");
-        await axios.get("/api/process/", { headers: { 'authorization': localStorage.getItem("tokenClient") }, params }).then(res => {
+        token = token || localStorage.getItem("tokenClient");
+        await axios.get("/api/process/", { headers: { 'authorization': token }, params }).then(res => {
             this.Props = { tickets: res.data }
         }).catch(err => console.log("err"));
         return this.Props.tickets;
