@@ -40,8 +40,8 @@ export default class MethodsTickets {
         return this.Props;
     }
 
-    async updateTicket(id, status) {
-        await axios.put("/api/ticket/" + id, { statusCatalogId: status }).then(res => { this.Props = { ticket: res.data }; })
+    async updateTicket(id, status, comments) {
+        await axios.put("/api/ticket/" + id, { statusCatalogId: status, comments: comments }).then(res => { this.Props = { ticket: res.data }; })
 
     }
 

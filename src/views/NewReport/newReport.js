@@ -15,6 +15,7 @@ export default function NewReport(props) {
     const [errProcess, setErrProcess] = React.useState(false);
     const [clients, setClients] = React.useState([]);
     const [client, setClient] = React.useState("");
+    const [clientoken, setClientToken] = useState("");
     // Styles
     const classes = newReportcss();
     const postTicket = new MethodsTickets();
@@ -40,6 +41,7 @@ export default function NewReport(props) {
 
 
     const gclients = () => {
+
         Promise.resolve(getClients.getClients().then(res => { setClients(res); }))
     }
     const handleChangeProcess = (event) => {
@@ -52,7 +54,8 @@ export default function NewReport(props) {
     };
     const handleChangeClient = (event) => {
         setClient(event.target.value);
-        processclient.getAllProcess(event.target.value).then(res => {
+        setClientToken(event.target.name);
+        processclient.getAllProcess(event.target.name).then(res => {
             setRowProcess(res.rows);
             setLoading(false);
         });
@@ -114,12 +117,12 @@ export default function NewReport(props) {
 
     const sendTicket = (titletxt, descriptiontxt) => {
         if (props.isadmin) {
-            postTicket.postTicket({ clientId: client, title: titletxt, process: process, subprocess: subprocess, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
+            postTicket.postTicket({ clientId: client, title: titletxt, process: process, subprocess: subprocess, description: descriptiontxt, statusCatalogId: 1, comments: "" }).then((res) => {
                 resultpost(res);
             });
         } else {
 
-            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, subprocess: subprocess, process: process, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
+            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, subprocess: subprocess, process: process, description: descriptiontxt, statusCatalogId: 1, comments: "" }).then((res) => {
                 resultpost(res);
             });
         }
@@ -143,11 +146,11 @@ export default function NewReport(props) {
                         value={client}
                         onChange={handleChangeClient}
                         variant="outlined"
+                        name={clientoken}
                     >
-                        {clients.map((proceso) => (
-                            <MenuItem key={proceso.id} value={proceso.token} name={proceso.id} >{proceso.name}</MenuItem>
-
-                        ))}
+                        {clients.map((proceso) =>
+                            (<MenuItem key={proceso.id} value={proceso.id} name={proceso.token} >{proceso.name}</MenuItem>)
+                        )}
                     </Select>
                 </FormControl> : null}
 

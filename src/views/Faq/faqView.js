@@ -35,6 +35,11 @@ function FaqView() {
     useEffect(() => {
     }, [change]);
 
+
+    useEffect(() => {
+        document.title = "Tickets"
+    })
+
     const exit = () => {
         setAuthTokensClients(false)
         localStorage.removeItem("istokenClient")
@@ -46,9 +51,9 @@ function FaqView() {
             <>
                 <NavBar title={"Helper"} tickets={"/helper/tickets"} cotizaciones={""} logout={<IconButton className={classes.btnend} onClick={() => exit()}><ExitToAppIcon /></IconButton>} />
                 < Grid container >
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} > <Des_Helper /></Grid>
-                    <Grid item xl={5} lg={5} md={5} sm={12} xs={12} >  <Faq /></Grid>
-                    <Grid item xl={7} lg={7} md={7} sm={12} xs={12}><ReportTable typeuser="client" /></Grid>
+                    {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} > <Des_Helper /></Grid>
+                    <Grid item xl={5} lg={5} md={5} sm={12} xs={12} >  <Faq /></Grid> */}
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}><ReportTable typeuser="client" /></Grid>
                 </Grid>
             </>
             :

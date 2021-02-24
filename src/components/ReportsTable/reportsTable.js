@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, } from '@material-ui/data-grid'
 import MethodsTickets from '../../services/Methods/methodsTickets'
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import fullReportcss from '../../views/FullReport/fullReport.css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
@@ -21,15 +21,28 @@ function ReportTable(props) {
     const [id, setId] = useState(undefined)
     const [visibleInterfaceDialog, setvisibleInterfaceDialog] = useState(false)
     const [Result, setResult] = useState(undefined);
+    const [OpenComments, setOpenComments] = useState(false);
     const procesos = statusCatalog();
-
     const [ilabels, setIlabels] = useState([]);
+    const [idStatus, setIdStatus] = useState("");
+    const [nameStatus, setNameStatus] = useState("");
 
     const changeStatus = (id, status) => {
-        classMethods.updateTicket(id, status.target.value).then(() => setRefresh(!isrefresh));
-
+        setOpenComments(true);
+        setIdStatus(id);
+        setNameStatus(status.target.value);
     }
 
+    const handleCloseComments = () => {
+        setOpenComments(false);
+    }
+
+    const handleSendStatus = () => {
+        classMethods.updateTicket(idStatus, nameStatus, document.getElementById("CommentStatus").value).then(() => {
+            setRefresh(!isrefresh);
+            setOpenComments(false);
+        });
+    }
     function formato(texto) {
         return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
     }
@@ -222,7 +235,7 @@ function ReportTable(props) {
     }
 
     return (
-        <div id="Container" style={{ height: 1000, width: "100%" }}>
+        <div id="Container" style={{ height: 1000, width: "80%", margin: "0px 10%" }}>
             <Button className={classes.BtnNewReport} onClick={() => isvisibleInterfaceDialog()} >Crear Ticket</Button>
             <DataGrid onStateChange={(e) => {
                 ChangeSizeColumn(e.state.columns.lookup);
@@ -236,6 +249,7 @@ function ReportTable(props) {
                 rowHeight={85}
                 rowsPerPageOptions={[10, 20, 40]}
                 onPageSizeChange={handlepagresize}
+                className={classes.Tabla}
             />;
             {!visibleInterfaceDialog ? <></> :
                 <InterfaceDialog
@@ -246,6 +260,30 @@ function ReportTable(props) {
                     refresh={refreshtable}
                 />}
             {Result !== undefined ? visibleSuccess() : Result}
+            {props.typeuser === "admin" ?
+                <Dialog open={OpenComments}>
+                    <DialogTitle id="form-dialog-title">Actualizar Status</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>Deje un comentario acerca del status actualizado.</DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="CommentStatus"
+                            label="Comentario..."
+                            type="text"
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseComments} color="primary">
+                            Cancelar
+          </Button>
+                        <Button onClick={handleSendStatus} color="primary">
+                            Actualizar
+          </Button>
+                    </DialogActions>
+                </Dialog>
+                : null}
 
         </div >
     );

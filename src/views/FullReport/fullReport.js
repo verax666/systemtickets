@@ -74,36 +74,14 @@ export default function FullReport(props) {
                                             <Typography variant="h5" className={classes.BodyTitle}>
                                                 Archivo de Prueba: </Typography>
                                         </Grid>
-                                    </Grid>
-                                    {props.isadmin ?
-                                        <Grid item xl={8} lg={8} md={8} sm={12} xs={12} >
+                                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                                             <Typography variant="h5" className={classes.BodyTitle}>
-                                                Historial de Comentarios: </Typography>
-                                            <List className={classes.root}>
-                                                <ListItem alignItems="flex-start">
-                                                    <ListItemAvatar>
-                                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                                    </ListItemAvatar>
-                                                    <ListItemText
-                                                        primary="Brunch this weekend?"
-                                                        secondary={
-                                                            <React.Fragment>
-                                                                <Typography
-                                                                    component="span"
-                                                                    variant="body2"
-                                                                    className={classes.inline}
-                                                                    color="textPrimary"
-                                                                >
-                                                                    {localStorage.getItem("iddeveloper")}
-                                                                </Typography>
-                                                                {" — I'll be in your neighborhood doing errands this…"}
-                                                            </React.Fragment>
-                                                        }
-                                                    />
-                                                </ListItem>
-                                                <Divider variant="inset" component="li" />
-                                            </List>
-                                        </Grid> : null}
+                                                Comentarios: </Typography>
+                                            <Typography variant="h5" className={classes.BodyTitle}>
+                                                {res.ticket.comments} </Typography>
+                                        </Grid>
+                                        <Divider />
+                                    </Grid>
                                 </DialogContent>
                             </div>
                         </>);
