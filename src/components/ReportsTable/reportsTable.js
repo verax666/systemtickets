@@ -38,6 +38,7 @@ function ReportTable(props) {
     }
 
     const handleSendStatus = () => {
+        console.log(document.getElementById("CommentStatus").value)
         classMethods.updateTicket(idStatus, nameStatus, document.getElementById("CommentStatus").value).then(() => {
             setRefresh(!isrefresh);
             setOpenComments(false);
