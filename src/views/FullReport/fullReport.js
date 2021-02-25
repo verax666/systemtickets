@@ -25,7 +25,6 @@ export default function FullReport(props) {
                 )
             ).then(
                 getMethods.getTikcet(props.id).then((res) => {
-                    console.log(res.ticket)
                     setDetails(
                         <>
                             <div className={classes.Body}>
@@ -80,7 +79,6 @@ export default function FullReport(props) {
                                                 Comentarios: </Typography>
                                             <Typography variant="h5" className={classes.BodyTitle}>
                                                 {res.ticket.comments} </Typography>
-                                            {console.log(res.ticket.comments)}
                                         </Grid>
                                         <Divider />
                                     </Grid>
