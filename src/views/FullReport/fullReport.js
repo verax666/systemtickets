@@ -25,6 +25,7 @@ export default function FullReport(props) {
                 )
             ).then(
                 getMethods.getTikcet(props.id).then((res) => {
+                    console.log(res.ticket)
                     setDetails(
                         <>
                             <div className={classes.Body}>
