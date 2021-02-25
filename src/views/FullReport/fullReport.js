@@ -79,7 +79,7 @@ export default function FullReport(props) {
                                                 Comentarios: </Typography>
                                             <Typography variant="h5" className={classes.BodyTitle}>
                                                 {res.ticket.comments} </Typography>
-                                            {console.log(res.tickets)}
+                                            {console.log(res.ticket.comments)}
                                         </Grid>
                                         <Divider />
                                     </Grid>

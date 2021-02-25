@@ -41,6 +41,7 @@ export default class MethodsTickets {
     }
 
     async updateTicket(id, status, comments) {
+        console.log(comments)
         await axios.put("/api/ticket/" + id, { statusCatalogId: status, comments: comments }).then(res => { this.Props = { ticket: res.data }; })
 
     }
