@@ -4,7 +4,7 @@ import { AuthContextClient, AuthContextAdmin, AuthContextLogin } from './views/P
 import { useState } from 'react';
 // Components
 import Home from './views/Home/home';
-import FaqView from './views/Faq/faqView';
+import FaqView from './views/Helper/faqView';
 import LoginClient from './views/LoginClient/loginClient';
 import LoginEmployed from './views/LoginEmployes/loginEmployes';
 import admin from './views/Admin/admin';

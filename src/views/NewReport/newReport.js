@@ -1,10 +1,10 @@
-import { TextField, Select, MenuItem, InputLabel, FormControl, Button, DialogTitle, DialogContent, DialogContentText, DialogActions, Dialog, Grid } from "@material-ui/core";
+import { TextField, Select, MenuItem, InputLabel, FormControl, Button, DialogTitle, DialogContent, DialogContentText, DialogActions, Dialog, } from "@material-ui/core";
 import React, { useEffect, useState } from 'react';
-import MethodsTickets from "../../services/Methods/methodsTickets";
+import MethodsTickets from "../../services/Tickets.service";
 import newReportcss from './newReport_css';
 import Alerts from './Alerts/Alerts'
-import CGetClients from "../../services/Methods/Clients/ClientService";
-import MethodsProcess from '../../services/Methods/Procesos/methodsProces'
+import CGetClients from "../../services/Clients/Client.service";
+import MethodsProcess from '../../services/Procesos/Process.service'
 
 export default function NewReport(props) {
 
@@ -117,12 +117,12 @@ export default function NewReport(props) {
 
     const sendTicket = (titletxt, descriptiontxt) => {
         if (props.isadmin) {
-            postTicket.postTicket({ clientId: client, title: titletxt, process: process, subprocess: subprocess, description: descriptiontxt, statusCatalogId: 1, comments: "" }).then((res) => {
+            postTicket.postTicket({ clientId: client, title: titletxt, process: process, subprocess: subprocess, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
                 resultpost(res);
             });
         } else {
 
-            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, subprocess: subprocess, process: process, description: descriptiontxt, statusCatalogId: 1, comments: "" }).then((res) => {
+            postTicket.postTicket({ clientId: parseInt(localStorage.getItem("ClientId"), 10), title: titletxt, subprocess: subprocess, process: process, description: descriptiontxt, statusCatalogId: 1 }).then((res) => {
                 resultpost(res);
             });
         }

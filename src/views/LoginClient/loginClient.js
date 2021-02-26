@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import validateClient from '../../services/Methods/validateClient'
+import validateClient from '../../services/validateClient'
 
 function LoginClient(props) {
     const { match: { params } } = props;

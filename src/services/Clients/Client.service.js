@@ -1,4 +1,4 @@
-import axios from '../../../axios/Config';
+import axios from '../../axios/Config';
 
 export default class CGetClients {
 

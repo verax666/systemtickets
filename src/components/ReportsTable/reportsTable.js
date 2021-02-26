@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, } from '@material-ui/data-grid'
-import MethodsTickets from '../../services/Methods/methodsTickets'
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import MethodsTickets from '../../services/Tickets.service'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Grid, IconButton, InputLabel, Menu, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import fullReportcss from '../../views/FullReport/fullReport.css'
 import InterfaceDialog from '../../views/InterfaceDialog/interfaceDialog'
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import statusCatalog from "../../services/Methods/StatusCatalog/StatusService";
+import statusCatalog from "../../services/StatusCatalog/Status.service";
 
 function ReportTable(props) {
     const classes = fullReportcss();
     const classMethods = new MethodsTickets();
+
     const [isrefresh, setRefresh] = useState(false);
     const [pagesize, setPageSize] = useState(10);
     const [items, setItems] = useState([]);
@@ -24,13 +25,21 @@ function ReportTable(props) {
     const [OpenComments, setOpenComments] = useState(false);
     const procesos = statusCatalog();
     const [ilabels, setIlabels] = useState([]);
+    const [idticket, setIdTicket] = useState("");
     const [idStatus, setIdStatus] = useState("");
     const [nameStatus, setNameStatus] = useState("");
+    const [prevStatus, setPrevStatus] = useState("");
+    const [prevcolor, setPrevColor] = useState("");
+    const [color, setColor] = useState("");
 
-    const changeStatus = (id, status) => {
+    const changeStatus = (id, prevname, prevcolor, status) => {
         setOpenComments(true);
-        setIdStatus(id);
-        setNameStatus(status.target.value);
+        setIdTicket(id);
+        setIdStatus(status.target.value);
+        setNameStatus(status.nativeEvent.toElement.innerText);
+        setPrevStatus(prevname);
+        setPrevColor(prevcolor);
+        setColor(status.nativeEvent.toElement.attributes.name.value);
     }
 
     const handleCloseComments = () => {
@@ -38,7 +47,7 @@ function ReportTable(props) {
     }
 
     const handleSendStatus = () => {
-        classMethods.updateTicket(idStatus, nameStatus, document.getElementById("CommentStatus").value).then(() => {
+        classMethods.updateTicket(idticket, idStatus, document.getElementById("CommentStatus").value, nameStatus, prevStatus, localStorage.getItem("iddeveloper"), prevcolor, color).then((res) => {
             setRefresh(!isrefresh);
             setOpenComments(false);
         });
@@ -57,28 +66,7 @@ function ReportTable(props) {
         setPageSize(params.pageSize)
     }
 
-    const selectStatusbk = (idStatus) => {
-        switch (idStatus) {
-            case 1: {
 
-                return classes.green;
-            }
-            case 2: {
-                return classes.gray;
-            }
-            case 3: {
-                return classes.blue;
-            }
-            case 4: {
-                return classes.yellow;
-            }
-            default: {
-                return classes.white;
-            }
-
-        }
-
-    }
     const UpdateTable = async (n, it, id_client) => {
         if (isUpdate) {
             switch (props.typeuser) {
@@ -96,7 +84,7 @@ function ReportTable(props) {
                             { field: 'description', headerName: 'Descripción', flex: .25 },
                             {
                                 field: 'status', headerName: 'Status', flex: .4, renderCell: (row) =>
-                                    (<><Typography style={{ display: "flex", margin: "0x auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
+                                    (<><Typography style={{ display: "flex", margin: "0x auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon style={{ color: row.row.status.color }} className={classes.statuscircle}></FiberManualRecordIcon></>)
                             },
                             {
                                 field: 'updatedAt', headerName: "Actualizado en", flex: .3, renderCell: (row) =>
@@ -131,7 +119,6 @@ function ReportTable(props) {
                         setUpdate(false);
                         setrow(res.totalItems);
                         setItems(res.tickets);
-                        let cont = document.getElementById("Container").offsetWidth
                         setIlabels([
                             { field: 'id', headerName: 'ID', flex: .13 },
                             { field: 'title', headerName: 'TITULO', flex: .23 },
@@ -139,7 +126,7 @@ function ReportTable(props) {
                             { field: 'description', headerName: 'DESCRIPCIÓN', flex: .23 },
                             {
                                 field: 'status', headerName: 'STATUS', flex: .23, renderCell: (row) =>
-                                    (<> <Typography style={{ display: "flex", margin: "0 auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon className={selectStatusbk(row.row.status.id)}></FiberManualRecordIcon></>)
+                                    (<> <Typography style={{ display: "flex", margin: "0 auto", }} >{row.row.status.name}</Typography> <FiberManualRecordIcon style={{ color: row.row.status.color }} className={classes.statuscircle}></FiberManualRecordIcon></>)
                             },
                             {
                                 field: 'updatedAt', headerName: "Actualizado en", flex: .22, renderCell: (row) =>
@@ -157,16 +144,17 @@ function ReportTable(props) {
                                     </Grid>
                                     <Grid item style={{ top: "3px", position: "absolute" }}>
                                         <FormControl >
-                                            <InputLabel style={{ fontSize: "14px" }} htmlFor="age-native-simple">Status </InputLabel>
+                                            <InputLabel style={{ fontSize: "14px" }} htmlFor="status">Status </InputLabel>
                                             <Select style={{ fontSize: "14px", width: "70px" }}
                                                 key={row.row.id}
                                                 labelId={row.row.title}
                                                 id={row.row.id + row.row.title}
                                                 value={row.row.status.id}
-                                                onChange={changeStatus.bind(this, row.row.id)}
+                                                onChange={changeStatus.bind(this, row.row.id, row.row.status.name, row.row.status.color)}
+
                                             >
                                                 {procesos.map((proceso, index) => (
-                                                    <MenuItem style={{ fontSize: "15px" }} key={row.row.title + proceso.id + index} value={proceso.id} >{proceso.id + " " + proceso.name}</MenuItem>
+                                                    <MenuItem style={{ fontSize: "15px" }} key={row.row.title + proceso.id + index} name={proceso.color} value={proceso.id}  >{proceso.name}</MenuItem>
                                                 ))}
                                             </Select>
                                         </FormControl>
@@ -262,7 +250,7 @@ function ReportTable(props) {
             {Result !== undefined ? visibleSuccess() : Result}
             {props.typeuser === "admin" ?
                 <Dialog open={OpenComments}>
-                    <DialogTitle id="form-dialog-title">Actualizar Status</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Actualizar Status de {prevStatus} a {nameStatus}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>Deje un comentario acerca del status actualizado.</DialogContentText>
                         <TextField

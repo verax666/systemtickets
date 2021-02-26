@@ -1,6 +1,8 @@
-import axios from '../../axios/Config';
+import axios from '../axios/Config';
+import ServiceComments from './Comments/comment.service';
 
 export default class MethodsTickets {
+    classComments = new ServiceComments();
 
     Props = {
         resServer: false,
@@ -40,10 +42,15 @@ export default class MethodsTickets {
         return this.Props;
     }
 
-    async updateTicket(id, status, comments) {
-        await axios.put("/api/ticket/" + id, { statusCatalogId: status, comments: comments }).then(res => { this.Props = { ticket: res.data }; })
+    async updateTicket(id, status, comments, nameStatus, prevStatus, user, prevcolor, color) {
+        await axios.put("/api/ticket/" + id, { statusCatalogId: status }).then(res => { this.Props = { ticket: res.data }; })
+        if (comments === "") {
+            comments = "Sin Comentarios."
+        }
+        await this.classComments.createComment({ Usuario: user, prevstatus: prevStatus, actualstatus: nameStatus, comments: comments, ticketId: id, prevcolor: prevcolor, color: color }).then(() => {
+
+        });
 
     }
-
 }
 

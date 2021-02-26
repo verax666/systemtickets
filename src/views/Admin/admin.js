@@ -5,8 +5,7 @@ import ReportTable from "../../components/ReportsTable/reportsTable";
 import { useEffect } from "react";
 import CotizadorAdmin from "../Cotizador/CotizadorAdmin/cotizadorAdmin";
 import { useAuthAdmin, useAuthLogin } from "../PrivateRoutes/contexts/contextRoutes";
-import { Button, IconButton, makeStyles } from "@material-ui/core";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Button, makeStyles } from "@material-ui/core";
 
 export default function Admin() {
     const useStyles = makeStyles({

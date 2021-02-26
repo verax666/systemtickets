@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Grid, IconButton, makeStyles } from '@material-ui/core';
-import Faq from '../../components/Faq_View/Faqs_View';
+// import Faq from '../../components/Faq_View/Faqs_View';
 import ReportTable from '../../components/ReportsTable/reportsTable';
 import NavBar from '../../components/NavBar/navBar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Redirect } from 'react-router-dom';
 import { useEffect } from 'react';
-import Des_Helper from '../../components/Description_Helper/Des_Helper';
+// import Des_Helper from '../../components/Description_Helper/Des_Helper';
 import { useAuthClient } from '../PrivateRoutes/contexts/contextRoutes';
 
 function FaqView() {
