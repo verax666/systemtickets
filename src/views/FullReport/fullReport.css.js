@@ -58,7 +58,13 @@ const fullReportcss = makeStyles((theme) => ({
         color: "#000",
         borderRadius: "40px",
         padding: "5px 20px"
-
+    },
+    commentStart: {
+        fontSize: "14px",
+        color: "#000",
+        borderRadius: "40px",
+        padding: "5px 20px",
+        backgroundColor: "#34B7F1"
     },
     titleprocess: {
         position: "relative",
