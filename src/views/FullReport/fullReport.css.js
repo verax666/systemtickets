@@ -76,10 +76,10 @@ const fullReportcss = makeStyles((theme) => ({
 
     },
     inlinelast: {
-        position: "absolute",
+        position: "relative",
         fontSize: "12px",
         color: "#000",
-        left: "0px",
+        float: "right",
         padding: "20px 20px"
     },
     commentadd: {
