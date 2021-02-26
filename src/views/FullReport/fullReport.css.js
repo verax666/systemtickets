@@ -80,7 +80,7 @@ const fullReportcss = makeStyles((theme) => ({
         fontSize: "12px",
         color: "#000",
         float: "right",
-        padding: "20px 20px"
+        padding: "5px 20px"
     },
     commentadd: {
         backgroundColor: "white",
