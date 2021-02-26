@@ -202,7 +202,7 @@ export default function FullReport(props) {
                                                                                     <Typography
                                                                                         component="span"
                                                                                         variant="body2"
-                                                                                        className={classes.inline}
+                                                                                        className={classes.commentStart}
                                                                                         display="block"
                                                                                     >
                                                                                         Comentario Inicial de {item.Usuario}: {item.comments}
