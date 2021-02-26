@@ -72,7 +72,8 @@ const fullReportcss = makeStyles((theme) => ({
         color: "#000",
         borderRadius: "40px",
         marginTop: "5px",
-        marginLeft: "20px"
+        marginLeft: "20px",
+        font: 'bold'
 
     },
     inlinelast: {
