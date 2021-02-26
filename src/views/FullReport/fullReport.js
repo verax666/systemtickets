@@ -125,7 +125,7 @@ export default function FullReport(props) {
                                                     id="panel1a-header"
 
                                                 >
-                                                    <Typography className={classes.heading}> Comentarios de Soporte:  </Typography>
+                                                    <Typography className={classes.heading}> Comentarios de Soporte: {res.ticket.comments.length} </Typography>
                                                 </AccordionSummary>
                                                 {res.ticket.comments.length === 0 ?
                                                     <Typography className={classes.heading}> Sin comentarios  </Typography>
